@@ -11,12 +11,14 @@ interface CartSummaryProps {
   productCart: ProductDataProps[];
   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
   setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
+  title: number;
 }
 
 function CartSummary({
   productCart,
   setProductCart,
   setProductSelected,
+  title,
 }: CartSummaryProps) {
   const numOfProductCart = productCart.length;
 
@@ -60,7 +62,7 @@ function CartSummary({
                   <div>
                     <p>
                       {product.title.length > 20
-                        ? `${product.title.slice(0, 15)}...`
+                        ? `${product.title.slice(0, title)}...`
                         : product.title}
                     </p>
                     <span>Men's Jersey</span>

@@ -5,7 +5,7 @@ interface CheckOutPageProps {
 }
 
 function CheckOutPage({ children }: CheckOutPageProps) {
-  return <div>{children}</div>;
+  return <div className="check-out-pages">{children}</div>;
 }
 
 export default CheckOutPage;

@@ -39,7 +39,7 @@ export const productData = [
     id: 301,
     image: product3,
     price: 450000,
-    title: "ITALY 24 HOME JERSEY",
+    title: "ITALY  24 HOME JERSEY",
   },
   {
     id: 401,

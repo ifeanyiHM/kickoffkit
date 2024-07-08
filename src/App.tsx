@@ -11,6 +11,7 @@ import { ProductDataProps, productData } from "./data/ProductData";
 import SeeMore from "./Pages/SeeMore";
 import CartSummary from "./Pages/CartSummary";
 import CheckOutPage from "./Pages/CheckOutPage";
+import CheckOutForm from "./Pages/CheckOutForm";
 
 function App() {
   const [desktopView, setDesktopView] = useState<boolean>(false);
@@ -100,6 +101,7 @@ function App() {
                     productCart={productCart}
                     setProductCart={setProductCart}
                     setProductSelected={setProductSelected}
+                    title={15}
                   />
                   <SeeMore
                     filteredProductData={filteredProductData}
@@ -124,6 +126,14 @@ function App() {
                   setQuery={setQuery}
                 />
                 <CheckOutPage>
+                  <CheckOutForm>
+                    <CartSummary
+                      productCart={productCart}
+                      setProductCart={setProductCart}
+                      setProductSelected={setProductSelected}
+                      title={15}
+                    />
+                  </CheckOutForm>
                   <SeeMore
                     filteredProductData={filteredProductData}
                     desktopView={desktopView}
