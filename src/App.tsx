@@ -75,20 +75,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <Nav
+          openMenu={openMenu}
+          setOpenMenu={setOpenMenu}
+          productCart={productCart}
+          desktopView={desktopView}
+          query={query}
+          setQuery={setQuery}
+        />
         <Routes>
           <Route
             index
             element={
               <>
                 <Header>
-                  <Nav
-                    openMenu={openMenu}
-                    setOpenMenu={setOpenMenu}
-                    productCart={productCart}
-                    desktopView={desktopView}
-                    query={query}
-                    setQuery={setQuery}
-                  />
                   <HeaderBody desktopView={desktopView} />
                 </Header>
                 <MainPage
@@ -104,14 +104,14 @@ function App() {
             path="cart"
             element={
               <>
-                <Nav
+                {/* <Nav
                   openMenu={openMenu}
                   setOpenMenu={setOpenMenu}
                   productCart={productCart}
                   desktopView={desktopView}
                   query={query}
                   setQuery={setQuery}
-                />
+                /> */}
                 <CartPage>
                   <CartSummary
                     productCart={productCart}

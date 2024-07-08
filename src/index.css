@@ -16,7 +16,8 @@
 
 nav {
   padding: 1rem;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   background-color: #fff;
   z-index: 1;
@@ -202,7 +203,7 @@ nav .collapse li:nth-child(5) {
 header .header-body {
   text-align: center;
   padding: 1.5rem 1rem;
-  margin-top: 0.75rem;
+  margin-top: 5.75rem;
 }
 header .header-body .text {
   margin-top: 1.5rem;
@@ -430,7 +431,7 @@ footer .copyright span {
 }
 
 .cart-page {
-  margin-top: 0.75rem;
+  margin-top: 5.75rem;
   padding: 1.5rem 1rem;
 }
 .cart-page .cart-page-container h1 {
@@ -644,6 +645,7 @@ footer .copyright span {
 
 .check-out-pages {
   padding: 0 1rem;
+  margin-top: 5.75rem;
 }
 .check-out-pages .check-out-form {
   display: flex;
@@ -975,6 +977,8 @@ footer .copyright span {
   nav {
     width: 65.5rem;
     margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 1rem 0;
     display: flex;
     align-items: center;
@@ -1093,6 +1097,7 @@ footer .copyright span {
   header {
     width: 65.5rem;
     margin: 0 auto;
+    margin-top: 9.75rem;
   }
   header img {
     width: 100%;
@@ -1218,7 +1223,7 @@ footer .copyright span {
   .cart-page {
     width: 65.5rem;
     margin: 0 auto;
-    margin-top: 4.75rem;
+    margin-top: 9.75rem;
     padding: 1.5rem 0;
   }
   .cart-page .cart-page-container {
@@ -1308,7 +1313,7 @@ footer .copyright span {
     width: 65.5rem;
     margin: 0 auto;
     padding: 0;
-    margin-top: 4.25rem;
+    margin-top: 9.75rem;
   }
   .check-out-pages .check-out-form {
     display: flex;
@@ -1395,7 +1400,9 @@ footer .copyright span {
 }
 @media screen and (min-width: 1440px) {
   nav {
-    width: 77.5rem;
+    width: 80rem;
+    top: 0;
+    right: 0;
   }
   nav ul li:nth-child(2) input {
     width: 33.75rem;
@@ -1437,7 +1444,7 @@ footer .copyright span {
   }
   .check-out-pages {
     width: 77.5rem;
-    margin-top: 6.25rem;
+    margin-top: 12.25rem;
   }
   .check-out-pages .cart-page-container .cart {
     width: 39.675rem;
