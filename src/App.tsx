@@ -12,6 +12,7 @@ import SeeMore from "./Pages/SeeMore";
 import CartSummary from "./Pages/CartSummary";
 import CheckOutPage from "./Pages/CheckOutPage";
 import CheckOutForm from "./Pages/CheckOutForm";
+import SuccessModal from "./Utilities/SuccessModal";
 
 function App() {
   const [desktopView, setDesktopView] = useState<boolean>(false);
@@ -19,6 +20,7 @@ function App() {
   const [productCart, setProductCart] = useState<ProductDataProps[]>([]);
   const [productSelected, setProductSelected] = useState<number[]>([]);
   const [query, setQuery] = useState<string>("");
+  const [isSelected, setIsSelected] = useState<boolean>(false);
 
   //search product by title
   const searchedProducts = productData.filter((item) =>
@@ -33,6 +35,7 @@ function App() {
   //display selected product on the cart page when clicked
   function addToCart(product: ProductDataProps) {
     handleCart(product);
+    setIsSelected(true);
 
     setProductSelected((selected) =>
       selected.includes(product.id)
@@ -44,6 +47,19 @@ function App() {
   //display in the see more section products that is not in the cart
   const filteredProductData = searchedProducts.filter(
     (product) => !productCart.some((cart) => cart.id === product.id)
+  );
+
+  useEffect(
+    function () {
+      if (isSelected) {
+        const timeout = setTimeout(() => {
+          setIsSelected(false);
+        }, 3000);
+
+        return () => clearTimeout(timeout);
+      }
+    },
+    [isSelected]
   );
 
   useEffect(
@@ -146,6 +162,7 @@ function App() {
           ></Route>
         </Routes>
         <FooterPage />
+        {isSelected && <SuccessModal />}
       </BrowserRouter>
     </>
   );

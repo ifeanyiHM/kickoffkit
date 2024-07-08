@@ -942,6 +942,29 @@ footer .copyright span {
   color: rgba(0, 0, 0, 0.6);
 }
 
+.success {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  border: 1px solid #077929;
+  border-radius: 4px;
+  background-color: #fff;
+  width: auto;
+}
+.success .icon {
+  font-size: 1.9rem;
+  color: #077929;
+}
+
 @media screen and (min-width: 700px) {
   footer .container {
     width: 43.75rem;
@@ -1356,6 +1379,18 @@ footer .copyright span {
   }
   .check-out-pages .see-more .product .product-container .tag {
     padding: 0.25rem 0 2.75rem 0;
+  }
+  .success {
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    top: 5rem;
+  }
+  .success .icon {
+    font-size: 2.25rem;
+    color: #077929;
+  }
+  .success span {
+    font-size: 1.125rem;
   }
 }
 @media screen and (min-width: 1440px) {
