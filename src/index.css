@@ -19,7 +19,7 @@ nav {
   position: sticky;
   top: 0;
   background-color: #fff;
-  z-index: -1;
+  z-index: 1;
 }
 nav .mobile {
   display: flex;
@@ -33,13 +33,13 @@ nav .mobile .logo img {
   width: 100%;
 }
 nav .mobile .menu {
-  padding: 1.078rem 0.938rem;
+  padding: 0.625rem;
   border-radius: 4px;
   background-color: #077929;
   position: relative;
 }
 nav .mobile .menu .icon {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   color: #fff;
 }
 nav .mobile .menu span {
@@ -58,25 +58,26 @@ nav ul {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   padding-top: 1rem;
   height: 0;
   visibility: hidden;
+  overflow: hidden;
   transition: 0.5s;
   height: 0;
   visibility: hidden;
+  overflow: hidden;
 }
 nav ul li {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 0.094rem;
-}
-nav ul li:nth-child(1) {
-  display: none;
+  padding: 0.906rem 0.75rem;
 }
 nav ul li:nth-child(2) {
   position: relative;
+  display: none;
 }
 nav ul li:nth-child(2) input {
   width: inherit;
@@ -90,16 +91,40 @@ nav ul li:nth-child(2) .icon-search {
   right: 0.75rem;
   top: 0.4rem;
 }
+nav ul li:last-child {
+  background-color: #077929;
+  border-radius: 4px;
+  color: #fff;
+}
+nav ul li:last-child span:last-child {
+  background-color: #fff;
+  color: #077929;
+  border-radius: 100px;
+  border: 1px solid #077929;
+  width: 1rem;
+  font-size: 0.688rem;
+  text-align: center;
+  transition: 0.3s;
+}
+nav ul li {
+  transform: scaleY(0);
+  transition: transform 0.3s ease-in-out 0.5s;
+}
+nav ul li a::before {
+  visibility: hidden;
+  height: 0;
+}
 nav .collapse {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   padding-top: 1rem;
   height: 0;
   visibility: hidden;
+  overflow: hidden;
   transition: 0.5s;
-  height: 11.875rem;
+  height: 19.5rem;
   visibility: visible;
 }
 nav .collapse li {
@@ -107,12 +132,11 @@ nav .collapse li {
   display: flex;
   align-items: center;
   gap: 0.094rem;
-}
-nav .collapse li:nth-child(1) {
-  display: none;
+  padding: 0.906rem 0.75rem;
 }
 nav .collapse li:nth-child(2) {
   position: relative;
+  display: none;
 }
 nav .collapse li:nth-child(2) input {
   width: inherit;
@@ -125,6 +149,40 @@ nav .collapse li:nth-child(2) .icon-search {
   position: absolute;
   right: 0.75rem;
   top: 0.4rem;
+}
+nav .collapse li:last-child {
+  background-color: #077929;
+  border-radius: 4px;
+  color: #fff;
+}
+nav .collapse li:last-child span:last-child {
+  background-color: #fff;
+  color: #077929;
+  border-radius: 100px;
+  border: 1px solid #077929;
+  width: 1rem;
+  font-size: 0.688rem;
+  text-align: center;
+  transition: 0.3s;
+}
+nav .collapse li {
+  transform: scaleY(1);
+  transition: transform 0.3s ease-in-out 0.5s;
+}
+nav .collapse li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+nav .collapse li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+nav .collapse li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+nav .collapse li:nth-child(4) {
+  transition-delay: 0.3s;
+}
+nav .collapse li:nth-child(5) {
+  transition-delay: 0.3s;
 }
 
 header .header-body {
@@ -197,7 +255,7 @@ main .product {
   border-top: 1px solid rgba(0, 0, 0, 0.2392156863);
 }
 main .product .product-container {
-  width: 10rem;
+  width: 44.44vw;
 }
 main .product .product-container .img-container {
   position: relative;
@@ -368,10 +426,13 @@ footer .copyright span {
   gap: 0.5rem;
 }
 .cart-page .container .item-container .product-img {
-  width: 7.5rem;
+  width: 33.33vw;
 }
 .cart-page .container .item-container .product-img img {
   width: 100%;
+}
+.cart-page .container .item-container .details {
+  flex-grow: 1;
 }
 .cart-page .container .item-container span {
   color: rgba(0, 0, 0, 0.6);
@@ -444,6 +505,7 @@ footer .copyright span {
   display: flex;
   gap: 0.75rem;
   padding-top: 0.75rem;
+  justify-content: center;
 }
 .cart-page .summary .coupon .input input,
 .cart-page .summary .coupon .input button {
@@ -501,7 +563,7 @@ footer .copyright span {
   padding-top: 1rem;
 }
 .cart-page .see-more .product .product-container {
-  width: 10rem;
+  width: 44.44vw;
 }
 .cart-page .see-more .product .product-container .img-container {
   position: relative;
@@ -547,9 +609,9 @@ footer .copyright span {
   color: rgba(0, 0, 0, 0.6);
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1100px) {
   nav {
-    width: 77.5rem;
+    width: 65.5rem;
     margin: 0 auto;
     padding: 1rem 0;
     display: flex;
@@ -578,9 +640,10 @@ footer .copyright span {
   nav ul li:nth-child(2) {
     position: relative;
     padding: 0;
+    display: block;
   }
   nav ul li:nth-child(2) input {
-    width: 33.75rem;
+    width: 20.75rem;
     height: 3rem;
     padding: 0 0.5rem;
   }
@@ -631,9 +694,10 @@ footer .copyright span {
   nav .collapse li:nth-child(2) {
     position: relative;
     padding: 0;
+    display: block;
   }
   nav .collapse li:nth-child(2) input {
-    width: 33.75rem;
+    width: 20.75rem;
     height: 3rem;
     padding: 0 0.5rem;
   }
@@ -665,7 +729,11 @@ footer .copyright span {
     transition: 0.3s;
   }
   header {
-    width: 77.5rem;
+    width: 65.5rem;
+    margin: 0 auto;
+  }
+  header img {
+    width: 100%;
     margin: 0 auto;
   }
   header .header-body {
@@ -691,7 +759,7 @@ footer .copyright span {
     width: 11.875rem;
   }
   main {
-    width: 77.5rem;
+    width: 65.5rem;
     margin: 0 auto;
   }
   main .nav {
@@ -721,7 +789,7 @@ footer .copyright span {
     grid-gap: 1.25rem;
   }
   main .product .product-container {
-    width: 18.438rem;
+    width: 14.438rem;
   }
   main .product .product-container .img-container img {
     width: 100%;
@@ -759,17 +827,17 @@ footer .copyright span {
     padding: 1.5rem 0;
   }
   footer .container {
-    width: 77.5rem;
+    width: 65.5rem;
     margin: 0 auto;
     display: flex;
-    gap: 9.875rem;
+    gap: 7.875rem;
   }
   footer .container .logo img {
-    width: 9.438rem;
+    width: 7.438rem;
   }
   footer .container .footer-list {
     width: 29.875rem;
-    gap: 6rem;
+    gap: 4rem;
     padding: 0;
   }
   footer .container .footer-list .item {
@@ -786,7 +854,7 @@ footer .copyright span {
     gap: 4.25rem;
   }
   .cart-page {
-    width: 77.5rem;
+    width: 65.5rem;
     margin: 0 auto;
     margin-top: 4.75rem;
     padding: 1.5rem 0;
@@ -798,7 +866,7 @@ footer .copyright span {
     margin: 0 auto;
   }
   .cart-page .cart-page-container .cart {
-    width: 39.675rem;
+    width: 35.675rem;
   }
   .cart-page .cart-page-container .cart .container {
     gap: 1.5rem;
@@ -810,7 +878,7 @@ footer .copyright span {
     width: 11.875rem;
   }
   .cart-page .cart-page-container .cart .container .item-container .details {
-    width: 26rem;
+    width: 22rem;
     position: relative;
   }
   .cart-page .cart-page-container .cart .container .item-container .details .dt {
@@ -854,7 +922,7 @@ footer .copyright span {
     padding-top: 1.5rem;
   }
   .cart-page .see-more .product .product-container {
-    width: 18.438rem;
+    width: 14.438rem;
   }
   .cart-page .see-more .product .product-container .img-container img {
     width: 100%;
@@ -873,5 +941,48 @@ footer .copyright span {
   }
   .cart-page .see-more .product .product-container .tag {
     padding: 0.25rem 0 2.75rem 0;
+  }
+}
+@media screen and (min-width: 1440px) {
+  nav {
+    width: 77.5rem;
+  }
+  nav ul li:nth-child(2) input {
+    width: 33.75rem;
+  }
+  header {
+    width: 77.5rem;
+  }
+  main {
+    width: 77.5rem;
+  }
+  main .product .product-container {
+    width: 18.438rem;
+  }
+  footer .container {
+    width: 77.5rem;
+    gap: 9.875rem;
+  }
+  footer .container .logo img {
+    width: 9.438rem;
+  }
+  footer .container .footer-list {
+    width: 29.875rem;
+    gap: 6rem;
+  }
+  footer .container .sign-up {
+    width: 18.438rem;
+  }
+  .cart-page {
+    width: 77.5rem;
+  }
+  .cart-page .cart-page-container .cart {
+    width: 39.675rem;
+  }
+  .cart-page .cart-page-container .cart .container .item-container .details {
+    width: 26rem;
+  }
+  .cart-page .see-more .product .product-container {
+    width: 18.438rem;
   }
 }/*# sourceMappingURL=index.css.map */

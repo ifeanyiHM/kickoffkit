@@ -11,9 +11,10 @@ import { ProductDataProps, productData } from "../data/ProductData";
 interface CartPageProps {
   desktopView: boolean;
   productCart: ProductDataProps[];
+  setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
 }
 
-function CartPage({ desktopView, productCart }: CartPageProps) {
+function CartPage({ desktopView, productCart, setProductCart }: CartPageProps) {
   const numOfProductCart = productCart.length;
 
   const totalPrice = productCart.reduce(
@@ -21,9 +22,15 @@ function CartPage({ desktopView, productCart }: CartPageProps) {
     0
   );
 
+  //delete product from the cart
   function clearProduct(id: number) {
-    productCart.filter((_, index) => index !== id);
+    setProductCart((prod) => prod.filter((_, index) => index !== id));
   }
+
+  //display in the see mor section products that is not in the cart
+  const filteredProductData = productData.filter(
+    (_, productId) => !productCart.some((_, cartId) => cartId === productId)
+  );
 
   return (
     <div className="cart-page">
@@ -40,7 +47,7 @@ function CartPage({ desktopView, productCart }: CartPageProps) {
                   <div className="dt">
                     <div>
                       <p>
-                        {product.title.length > 15
+                        {product.title.length > 20
                           ? `${product.title.slice(0, 15)}...`
                           : product.title}
                       </p>
@@ -108,27 +115,29 @@ function CartPage({ desktopView, productCart }: CartPageProps) {
           </div>
         </div>
         <div className="product">
-          {productData.slice(0, desktopView ? 4 : 2).map((product, index) => (
-            <div key={index} className="product-container">
-              <div className="img-container">
-                <img src={product.image} alt="product" />
-                <span className="icon">
-                  <IoIosHeartEmpty />
-                </span>
-                <span className="icon2">
-                  <IoCartOutline />
-                </span>
+          {filteredProductData
+            .slice(0, desktopView ? 4 : 2)
+            .map((product, index) => (
+              <div key={index} className="product-container">
+                <div className="img-container">
+                  <img src={product.image} alt="product" />
+                  <span className="icon">
+                    <IoIosHeartEmpty />
+                  </span>
+                  <span className="icon2">
+                    <IoCartOutline />
+                  </span>
+                </div>
+                <div className="price">
+                  <span>₦{product.price.toLocaleString()}</span>
+                  <span>
+                    4.5 <IoStar className="icon" />
+                  </span>
+                </div>
+                <p>{product.title.slice(0, 15)}...</p>
+                <span className="tag">Men's Jersey</span>
               </div>
-              <div className="price">
-                <span>₦{product.price}</span>
-                <span>
-                  4.5 <IoStar className="icon" />
-                </span>
-              </div>
-              <p>{product.title.slice(0, 15)}...</p>
-              <span className="tag">Men's Jersey</span>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

@@ -74,7 +74,7 @@ function MainPage({ desktopView, onAddCart }: MainPageProps) {
               </span>
             </div>
             <div className="price">
-              <span>₦{product.price}</span>
+              <span>₦{product.price.toLocaleString()}</span>
               <span>
                 4.5 <IoStar className="icon" />
               </span>

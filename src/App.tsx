@@ -20,7 +20,7 @@ function App() {
 
   useEffect(
     function () {
-      const mq = window.matchMedia("(min-width: 1440px)");
+      const mq = window.matchMedia("(min-width: 1100px)");
       if (mq.matches) {
         setOpenMenu(true);
         setDesktopView(true);
@@ -57,7 +57,11 @@ function App() {
                   setOpenMenu={setOpenMenu}
                   productCart={productCart}
                 />
-                <CartPage desktopView={desktopView} productCart={productCart} />
+                <CartPage
+                  desktopView={desktopView}
+                  productCart={productCart}
+                  setProductCart={setProductCart}
+                />
               </>
             }
           ></Route>
