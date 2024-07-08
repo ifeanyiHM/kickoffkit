@@ -800,6 +800,19 @@ footer {
   }
 }
 
+.product-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #00000080;
+  .icon {
+    font-size: 20rem;
+    color: #0000001f;
+  }
+}
+
 @media screen and (min-width: 700px) {
   @mixin bodystyles {
     width: 43.75rem;

@@ -8,6 +8,8 @@ import { FaAnglesLeft } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAnglesRight } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+import { PiMaskSadLight } from "react-icons/pi";
+
 import { ProductDataProps } from "../../data/ProductData";
 
 interface MainPageProps {
@@ -29,7 +31,11 @@ function MainPage({
   if (searchedProducts.length < 1)
     return (
       <div className="product-not-found">
-        <h1>product not found</h1>
+        <PiMaskSadLight className="icon" />
+        <h1>
+          We couldn't find any product that match your search criteria. <br />
+          Please try a different product....
+        </h1>
       </div>
     );
 

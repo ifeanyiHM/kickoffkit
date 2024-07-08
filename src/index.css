@@ -967,6 +967,19 @@ footer .copyright span {
   color: #077929;
 }
 
+.product-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5019607843);
+}
+.product-not-found .icon {
+  font-size: 20rem;
+  color: rgba(0, 0, 0, 0.1215686275);
+}
+
 @media screen and (min-width: 700px) {
   footer .container {
     width: 43.75rem;
