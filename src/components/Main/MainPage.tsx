@@ -12,15 +12,12 @@ import { ProductDataProps, productData } from "../../data/ProductData";
 
 interface MainPageProps {
   desktopView: boolean;
-  onAddCart: (product: ProductDataProps) => void;
+  productSelected: number[];
+  addToCart: (product: ProductDataProps, index: number) => void;
 }
 
-function MainPage({ desktopView, onAddCart }: MainPageProps) {
+function MainPage({ desktopView, productSelected, addToCart }: MainPageProps) {
   const [productList, setProductList] = useState<string>("arrival");
-
-  function addToCart(product: ProductDataProps) {
-    onAddCart(product);
-  }
 
   return (
     <main>
@@ -69,7 +66,12 @@ function MainPage({ desktopView, onAddCart }: MainPageProps) {
               <span className="icon">
                 <IoIosHeartEmpty />
               </span>
-              <span className="icon2" onClick={() => addToCart(product)}>
+              <span
+                className={`icon2 ${
+                  productSelected.includes(index) ? "add-to-cart" : ""
+                }`}
+                onClick={() => addToCart(product, index)}
+              >
                 <IoCartOutline />
               </span>
             </div>

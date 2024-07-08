@@ -13,9 +13,20 @@ function App() {
   const [desktopView, setDesktopView] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [productCart, setProductCart] = useState<ProductDataProps[]>([]);
+  const [productSelected, setProductSelected] = useState<number[]>([]);
 
   function handleCart(product: ProductDataProps) {
     setProductCart((products) => [...products, product]);
+  }
+
+  function addToCart(product: ProductDataProps, index: number) {
+    handleCart(product);
+
+    setProductSelected((selected) =>
+      selected.includes(index)
+        ? selected.filter((i) => i !== index)
+        : [...selected, index]
+    );
   }
 
   useEffect(
@@ -44,7 +55,11 @@ function App() {
                   />
                   <HeaderBody desktopView={desktopView} />
                 </Header>
-                <MainPage desktopView={desktopView} onAddCart={handleCart} />
+                <MainPage
+                  desktopView={desktopView}
+                  productSelected={productSelected}
+                  addToCart={addToCart}
+                />
               </>
             }
           ></Route>
@@ -61,6 +76,8 @@ function App() {
                   desktopView={desktopView}
                   productCart={productCart}
                   setProductCart={setProductCart}
+                  productSelected={productSelected}
+                  addToCart={addToCart}
                 />
               </>
             }

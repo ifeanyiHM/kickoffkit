@@ -271,12 +271,17 @@ main .product .product-container .img-container .icon2 {
   background-color: #fff;
   border-radius: 4px;
   font-size: 1rem;
+  cursor: pointer;
 }
 main .product .product-container .img-container .icon {
   left: 0.25rem;
 }
 main .product .product-container .img-container .icon2 {
   right: 0.25rem;
+}
+main .product .product-container .img-container .add-to-cart {
+  background: #077929;
+  color: #fff;
 }
 main .product .product-container .price {
   color: #077929;
@@ -579,12 +584,17 @@ footer .copyright span {
   background-color: #fff;
   border-radius: 4px;
   font-size: 1rem;
+  cursor: pointer;
 }
 .cart-page .see-more .product .product-container .img-container .icon {
   left: 0.25rem;
 }
 .cart-page .see-more .product .product-container .img-container .icon2 {
   right: 0.25rem;
+}
+.cart-page .see-more .product .product-container .img-container .add-to-cart {
+  background: #077929;
+  color: #fff;
 }
 .cart-page .see-more .product .product-container .price {
   color: #077929;

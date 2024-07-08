@@ -44,6 +44,7 @@ $primary-color: #fff;
         background-color: $primary-color;
         border-radius: 4px;
         font-size: 1rem;
+        cursor: pointer;
       }
 
       .icon {
@@ -52,6 +53,11 @@ $primary-color: #fff;
 
       .icon2 {
         right: 0.25rem;
+      }
+
+      .add-to-cart {
+        background: $background-color;
+        color: $primary-color;
       }
     }
 

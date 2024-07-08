@@ -12,9 +12,17 @@ interface CartPageProps {
   desktopView: boolean;
   productCart: ProductDataProps[];
   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
+  productSelected: number[];
+  addToCart: (product: ProductDataProps, index: number) => void;
 }
 
-function CartPage({ desktopView, productCart, setProductCart }: CartPageProps) {
+function CartPage({
+  desktopView,
+  productCart,
+  setProductCart,
+  productSelected,
+  addToCart,
+}: CartPageProps) {
   const numOfProductCart = productCart.length;
 
   const totalPrice = productCart.reduce(
@@ -124,7 +132,12 @@ function CartPage({ desktopView, productCart, setProductCart }: CartPageProps) {
                   <span className="icon">
                     <IoIosHeartEmpty />
                   </span>
-                  <span className="icon2">
+                  <span
+                    className={`icon2 ${
+                      productSelected.includes(index) ? "add-to-cart" : ""
+                    }`}
+                    onClick={() => addToCart(product, index)}
+                  >
                     <IoCartOutline />
                   </span>
                 </div>
