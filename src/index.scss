@@ -104,34 +104,48 @@ nav {
 
     .logo {
       width: 9.438rem;
+      cursor: pointer;
 
       img {
         width: 100%;
       }
     }
 
-    .menu {
-      padding: 0.625rem;
-      border-radius: 4px;
-      background-color: $background-color;
-      position: relative;
+    .search-cart {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
 
-      .icon {
-        font-size: 1.5rem;
-        color: $primary-color;
+      .icon-search {
+        font-size: 1.22rem;
+        font-weight: 700;
+        cursor: pointer;
       }
 
-      span {
-        position: absolute;
-        top: -0.1rem;
-        right: -0.1rem;
-        background-color: $primary-color;
-        color: $background-color;
-        border-radius: 100px;
-        border: 1px solid $background-color;
-        width: 1rem;
-        font-size: 0.688rem;
-        text-align: center;
+      .menu {
+        padding: 0.625rem;
+        border-radius: 4px;
+        background-color: $background-color;
+        position: relative;
+        cursor: pointer;
+
+        .icon {
+          font-size: 1.5rem;
+          color: $primary-color;
+        }
+
+        span {
+          position: absolute;
+          top: -0.1rem;
+          right: -0.1rem;
+          background-color: $primary-color;
+          color: $background-color;
+          border-radius: 100px;
+          border: 1px solid $background-color;
+          width: 1rem;
+          font-size: 0.688rem;
+          text-align: center;
+        }
       }
     }
   }
@@ -153,6 +167,7 @@ nav {
       align-items: center;
       gap: 0.094rem;
       padding: 0.906rem 0.75rem;
+      cursor: pointer;
 
       &:nth-child(2) {
         position: relative;
@@ -268,6 +283,7 @@ header {
         color: $primary-color;
         border: 0;
         border-radius: 4px;
+        cursor: pointer;
       }
     }
   }
@@ -292,6 +308,7 @@ main {
       font-size: 0.813rem;
       color: #00000099;
       justify-content: center;
+      cursor: pointer;
     }
 
     .active {
@@ -452,6 +469,36 @@ footer {
   }
 }
 
+.see-more {
+  padding: 1.5rem 0;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 1.125rem;
+    }
+
+    .button {
+      display: flex;
+      gap: 1rem;
+
+      .icon {
+        font-size: 2rem;
+        color: $background-color;
+      }
+    }
+  }
+
+  .product {
+    @include productStyles;
+    border-top: none;
+    padding-top: 1rem;
+  }
+}
+
 .cart-page {
   margin-top: 0.75rem;
   padding: 1.5rem 1rem;
@@ -480,6 +527,11 @@ footer {
 
       .details {
         flex-grow: 1;
+
+        .icon1,
+        .icon2 {
+          cursor: pointer;
+        }
       }
 
       span {
@@ -504,6 +556,7 @@ footer {
         background: none;
         margin-bottom: 0.5rem;
         border-radius: 4px;
+        cursor: pointer;
       }
 
       .rate {
@@ -572,6 +625,7 @@ footer {
         button {
           height: 2.75rem;
           background: none;
+          cursor: pointer;
         }
 
         input {
@@ -600,36 +654,7 @@ footer {
       color: $primary-color;
       border: none;
       border-radius: 4px;
-    }
-  }
-
-  .see-more {
-    padding: 1.5rem 0;
-
-    .head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      h3 {
-        font-size: 1.125rem;
-      }
-
-      .button {
-        display: flex;
-        gap: 1rem;
-
-        .icon {
-          font-size: 2rem;
-          color: $background-color;
-        }
-      }
-    }
-
-    .product {
-      @include productStyles;
-      border-top: none;
-      padding-top: 1rem;
+      cursor: pointer;
     }
   }
 }
@@ -682,7 +707,7 @@ footer {
     gap: 0.771rem;
 
     .mobile {
-      .menu {
+      .search-cart {
         display: none;
       }
     }
@@ -885,6 +910,15 @@ footer {
     }
   }
 
+  .see-more {
+    padding: 1.5rem 0;
+
+    .product {
+      @include productStyles;
+      padding-top: 1.5rem;
+    }
+  }
+
   .cart-page {
     @include bodystyles;
     margin-top: 4.75rem;
@@ -958,15 +992,6 @@ footer {
         }
       }
     }
-
-    .see-more {
-      padding: 1.5rem 0;
-
-      .product {
-        @include productStyles;
-        padding-top: 1.5rem;
-      }
-    }
   }
 }
 
@@ -1034,6 +1059,12 @@ footer {
     }
   }
 
+  .see-more {
+    .product {
+      @include productStyles;
+    }
+  }
+
   .cart-page {
     @include bodystyles;
 
@@ -1048,12 +1079,6 @@ footer {
             }
           }
         }
-      }
-    }
-
-    .see-more {
-      .product {
-        @include productStyles;
       }
     }
   }

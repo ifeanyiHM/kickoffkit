@@ -12,26 +12,48 @@ interface NavProps {
   openMenu: boolean;
   setOpenMenu: (type: boolean) => void;
   productCart: ProductDataProps[];
+  desktopView: boolean;
+  query: string;
+  setQuery: (type: string) => void;
 }
 
-function Nav({ openMenu, setOpenMenu, productCart }: NavProps) {
+function Nav({
+  openMenu,
+  setOpenMenu,
+  productCart,
+  desktopView,
+  query,
+  setQuery,
+}: NavProps) {
   const navigate = useNavigate();
 
   const numOfProductCart = productCart.length;
 
+  //navigate to either the home or cart page when logo or cart icon is clicked
+  function goToCart(url: string) {
+    navigate(url);
+
+    if (!desktopView) {
+      setOpenMenu(false);
+    }
+  }
+
   return (
     <nav>
       <div className="mobile">
-        <div className="logo" onClick={() => navigate("/")}>
+        <div className="logo" onClick={() => goToCart("/")}>
           <img src={logo} alt="logo" />
         </div>
-        <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
-          {numOfProductCart > 0 ? <span>{numOfProductCart}</span> : ""}
-          {openMenu ? (
-            <IoCloseSharp className="icon" />
-          ) : (
-            <IoMdMenu className="icon" />
-          )}
+        <div className="search-cart">
+          <CiSearch className="icon-search" />
+          <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
+            {numOfProductCart > 0 ? <span>{numOfProductCart}</span> : ""}
+            {openMenu ? (
+              <IoCloseSharp className="icon" />
+            ) : (
+              <IoMdMenu className="icon" />
+            )}
+          </div>
         </div>
       </div>
       <ul className={openMenu ? "collapse" : ""}>
@@ -40,7 +62,12 @@ function Nav({ openMenu, setOpenMenu, productCart }: NavProps) {
           Menu
         </li>
         <li>
-          <input type="text" placeholder="Search for anything" />
+          <input
+            type="text"
+            placeholder="Search for anything"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
           <CiSearch className="icon-search" />
         </li>
         <li>Track Order</li>
@@ -48,7 +75,7 @@ function Nav({ openMenu, setOpenMenu, productCart }: NavProps) {
         <li>
           <GoPerson /> Account
         </li>
-        <li onClick={() => navigate("/cart")}>
+        <li onClick={() => goToCart("/cart")}>
           <IoCartSharp />
           <span>cart</span>
           <span

@@ -8,17 +8,32 @@ import { FaAnglesLeft } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAnglesRight } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-import { ProductDataProps, productData } from "../../data/ProductData";
+import { ProductDataProps } from "../../data/ProductData";
 
 interface MainPageProps {
   desktopView: boolean;
   productSelected: number[];
+  searchedProducts: ProductDataProps[];
   addToCart: (product: ProductDataProps, index: number) => void;
 }
 
-function MainPage({ desktopView, productSelected, addToCart }: MainPageProps) {
+function MainPage({
+  desktopView,
+  productSelected,
+  addToCart,
+  searchedProducts,
+}: MainPageProps) {
   const [productList, setProductList] = useState<string>("arrival");
 
+  //return not found if no products
+  if (searchedProducts.length < 1)
+    return (
+      <div className="product-not-found">
+        <h1>product not found</h1>
+      </div>
+    );
+
+  //display main page
   return (
     <main>
       <div className="nav">
@@ -59,7 +74,7 @@ function MainPage({ desktopView, productSelected, addToCart }: MainPageProps) {
         </button>
       </div>
       <div className="product">
-        {productData.map((product, index) => (
+        {searchedProducts.map((product, index) => (
           <div key={index} className="product-container">
             <div className="img-container">
               <img src={product.image} alt="product" />
@@ -68,9 +83,9 @@ function MainPage({ desktopView, productSelected, addToCart }: MainPageProps) {
               </span>
               <span
                 className={`icon2 ${
-                  productSelected.includes(index) ? "add-to-cart" : ""
+                  productSelected.includes(product.id) ? "add-to-cart" : ""
                 }`}
-                onClick={() => addToCart(product, index)}
+                onClick={() => addToCart(product, product.id)}
               >
                 <IoCartOutline />
               </span>
