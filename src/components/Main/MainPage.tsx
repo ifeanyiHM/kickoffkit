@@ -118,7 +118,7 @@ const MainPage = forwardRef<HTMLDivElement, MainPageProps>(
               <p>
                 {desktopView
                   ? product.title.length > 30
-                    ? `${product.title.slice(0, 30)}...`
+                    ? `${product.title.slice(0, 23)}...`
                     : product.title
                   : product.title.length > 15
                   ? `${product.title.slice(0, 15)}...`

@@ -91,7 +91,7 @@ export const productData = [
     id: 1011,
     image: product10,
     price: 780000,
-    title: "REAL MADRID PRE-MATCH JERSEY",
+    title: "REAL MADRIID  PRE-MATCH  JERSEY",
     rating: "4.9",
   },
   {
