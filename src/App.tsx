@@ -21,6 +21,13 @@ function App() {
   const [productSelected, setProductSelected] = useState<number[]>([]);
   const [query, setQuery] = useState<string>("");
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [likedProducts, setLikedProducts] = useState<number[]>([]);
+
+  function handleLikes(id: number) {
+    setLikedProducts((likes) =>
+      likes.includes(id) ? likes.filter((id) => id !== id) : [...likes, id]
+    );
+  }
 
   //search product by title
   const searchedProducts = productData.filter((item) =>
@@ -49,6 +56,7 @@ function App() {
     (product) => !productCart.some((cart) => cart.id === product.id)
   );
 
+  //clear notification
   useEffect(
     function () {
       if (isSelected) {
@@ -96,6 +104,8 @@ function App() {
                   productSelected={productSelected}
                   addToCart={addToCart}
                   searchedProducts={searchedProducts}
+                  likedProducts={likedProducts}
+                  handleLikes={handleLikes}
                 />
               </>
             }
@@ -104,26 +114,22 @@ function App() {
             path="cart"
             element={
               <>
-                {/* <Nav
-                  openMenu={openMenu}
-                  setOpenMenu={setOpenMenu}
-                  productCart={productCart}
-                  desktopView={desktopView}
-                  query={query}
-                  setQuery={setQuery}
-                /> */}
                 <CartPage>
                   <CartSummary
                     productCart={productCart}
                     setProductCart={setProductCart}
                     setProductSelected={setProductSelected}
                     title={15}
+                    likedProducts={likedProducts}
+                    handleLikes={handleLikes}
                   />
                   <SeeMore
                     filteredProductData={filteredProductData}
                     desktopView={desktopView}
                     productSelected={productSelected}
                     addToCart={addToCart}
+                    likedProducts={likedProducts}
+                    handleLikes={handleLikes}
                   />
                 </CartPage>
               </>
@@ -148,6 +154,8 @@ function App() {
                       setProductCart={setProductCart}
                       setProductSelected={setProductSelected}
                       title={15}
+                      likedProducts={likedProducts}
+                      handleLikes={handleLikes}
                     />
                   </CheckOutForm>
                   <SeeMore
@@ -155,6 +163,8 @@ function App() {
                     desktopView={desktopView}
                     productSelected={productSelected}
                     addToCart={addToCart}
+                    likedProducts={likedProducts}
+                    handleLikes={handleLikes}
                   />
                 </CheckOutPage>
               </>

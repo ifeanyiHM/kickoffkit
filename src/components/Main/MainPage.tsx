@@ -9,6 +9,7 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { FaAnglesRight } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { PiMaskSadLight } from "react-icons/pi";
+import { IoIosHeart } from "react-icons/io";
 
 import { ProductDataProps } from "../../data/ProductData";
 
@@ -17,6 +18,8 @@ interface MainPageProps {
   productSelected: number[];
   searchedProducts: ProductDataProps[];
   addToCart: (product: ProductDataProps, index: number) => void;
+  likedProducts: number[];
+  handleLikes: (id: number) => void;
 }
 
 function MainPage({
@@ -24,6 +27,8 @@ function MainPage({
   productSelected,
   addToCart,
   searchedProducts,
+  likedProducts,
+  handleLikes,
 }: MainPageProps) {
   const [productList, setProductList] = useState<string>("arrival");
 
@@ -84,8 +89,12 @@ function MainPage({
           <div key={index} className="product-container">
             <div className="img-container">
               <img src={product.image} alt="product" />
-              <span className="icon">
-                <IoIosHeartEmpty />
+              <span className="icon" onClick={() => handleLikes(product.id)}>
+                {likedProducts.includes(product.id) ? (
+                  <IoIosHeart color=" #C61B1B" />
+                ) : (
+                  <IoIosHeartEmpty />
+                )}
               </span>
               <span
                 className={`icon2 ${

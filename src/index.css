@@ -50,6 +50,10 @@ nav .mobile .search-cart .menu {
   background-color: #077929;
   position: relative;
   cursor: pointer;
+  transition: 0.3s;
+}
+nav .mobile .search-cart .menu:hover {
+  background-color: #02611f;
 }
 nav .mobile .search-cart .menu .icon {
   font-size: 1.5rem;
@@ -109,6 +113,10 @@ nav ul li:last-child {
   background-color: #077929;
   border-radius: 4px;
   color: #fff;
+  transition: 0.3s;
+}
+nav ul li:last-child:hover {
+  background-color: #02611f;
 }
 nav ul li:last-child span:last-child {
   background-color: #fff;
@@ -169,6 +177,10 @@ nav .collapse li:last-child {
   background-color: #077929;
   border-radius: 4px;
   color: #fff;
+  transition: 0.3s;
+}
+nav .collapse li:last-child:hover {
+  background-color: #02611f;
 }
 nav .collapse li:last-child span:last-child {
   background-color: #fff;
@@ -225,6 +237,10 @@ header .header-body .text button {
   border: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.3s;
+}
+header .header-body .text button:hover {
+  background-color: #02611f;
 }
 
 main {
@@ -299,6 +315,10 @@ main .product .product-container .img-container .icon2 {
 main .product .product-container .img-container .add-to-cart {
   background: #077929;
   color: #fff;
+  transition: 0.3s;
+}
+main .product .product-container .img-container .add-to-cart:hover {
+  background-color: #02611f;
 }
 main .product .product-container .price {
   color: #077929;
@@ -562,6 +582,10 @@ footer .copyright span {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.3s;
+}
+.cart-page .cart-page-container .summary .proceed:hover {
+  background-color: #02611f;
 }
 .cart-page .see-more {
   padding: 1.5rem 0;
@@ -581,6 +605,10 @@ footer .copyright span {
 .cart-page .see-more .head .button .icon {
   font-size: 2rem;
   color: #077929;
+  transition: 0.3s;
+}
+.cart-page .see-more .head .button .icon:hover {
+  color: #02611f;
 }
 .cart-page .see-more .product {
   display: grid;
@@ -619,6 +647,10 @@ footer .copyright span {
 .cart-page .see-more .product .product-container .img-container .add-to-cart {
   background: #077929;
   color: #fff;
+  transition: 0.3s;
+}
+.cart-page .see-more .product .product-container .img-container .add-to-cart:hover {
+  background-color: #02611f;
 }
 .cart-page .see-more .product .product-container .price {
   color: #077929;
@@ -707,6 +739,11 @@ footer .copyright span {
   color: #fff;
   border: none;
   margin-top: 1.5rem;
+  transition: 0.3s;
+}
+.check-out-pages .check-out-form .container .delivery form button:hover,
+.check-out-pages .check-out-form .container .payment form button:hover {
+  background-color: #02611f;
 }
 .check-out-pages .check-out-form .container .delivery form .det,
 .check-out-pages .check-out-form .container .payment form .det {
@@ -881,6 +918,10 @@ footer .copyright span {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.3s;
+}
+.check-out-pages .cart-page-container .summary .proceed:hover {
+  background-color: #02611f;
 }
 .check-out-pages .cart-page-container .summary {
   border: none;
@@ -911,6 +952,10 @@ footer .copyright span {
 .check-out-pages .see-more .head .button .icon {
   font-size: 2rem;
   color: #077929;
+  transition: 0.3s;
+}
+.check-out-pages .see-more .head .button .icon:hover {
+  color: #02611f;
 }
 .check-out-pages .see-more .product {
   display: grid;
@@ -949,6 +994,10 @@ footer .copyright span {
 .check-out-pages .see-more .product .product-container .img-container .add-to-cart {
   background: #077929;
   color: #fff;
+  transition: 0.3s;
+}
+.check-out-pages .see-more .product .product-container .img-container .add-to-cart:hover {
+  background-color: #02611f;
 }
 .check-out-pages .see-more .product .product-container .price {
   color: #077929;

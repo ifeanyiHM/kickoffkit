@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
+import { IoIosHeart } from "react-icons/io";
 
 import { ProductDataProps } from "../data/ProductData";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +13,8 @@ interface CartSummaryProps {
   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
   setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
   title: number;
+  likedProducts: number[];
+  handleLikes: (id: number) => void;
 }
 
 function CartSummary({
@@ -19,6 +22,8 @@ function CartSummary({
   setProductCart,
   setProductSelected,
   title,
+  likedProducts,
+  handleLikes,
 }: CartSummaryProps) {
   const numOfProductCart = productCart.length;
 
@@ -82,7 +87,17 @@ function CartSummary({
                     className="icon1"
                     onClick={() => clearProduct(product.id)}
                   />
-                  <IoIosHeartEmpty className="icon2" />
+                  <span
+                    className="icon"
+                    onClick={() => handleLikes(product.id)}
+                  >
+                    {likedProducts.includes(product.id) ? (
+                      <IoIosHeart className="icon2" color=" #C61B1B" />
+                    ) : (
+                      <IoIosHeartEmpty className="icon2" />
+                    )}
+                  </span>
+                  {/* <IoIosHeartEmpty className="icon2" /> */}
                 </div>
               </div>
             </div>

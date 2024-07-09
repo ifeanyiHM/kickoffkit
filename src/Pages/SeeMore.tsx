@@ -3,6 +3,7 @@ import { TfiArrowCircleRight } from "react-icons/tfi";
 import { IoCartOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart } from "react-icons/io";
 
 import { ProductDataProps } from "../data/ProductData";
 
@@ -11,6 +12,8 @@ interface SeeMoreProps {
   desktopView: boolean;
   productSelected: number[];
   addToCart: (product: ProductDataProps, index: number) => void;
+  likedProducts: number[];
+  handleLikes: (id: number) => void;
 }
 
 function SeeMore({
@@ -18,6 +21,8 @@ function SeeMore({
   productSelected,
   desktopView,
   addToCart,
+  likedProducts,
+  handleLikes,
 }: SeeMoreProps) {
   return (
     <div className="see-more">
@@ -35,8 +40,12 @@ function SeeMore({
             <div key={index} className="product-container">
               <div className="img-container">
                 <img src={product.image} alt="product" />
-                <span className="icon">
-                  <IoIosHeartEmpty />
+                <span className="icon" onClick={() => handleLikes(product.id)}>
+                  {likedProducts.includes(product.id) ? (
+                    <IoIosHeart color=" #C61B1B" />
+                  ) : (
+                    <IoIosHeartEmpty />
+                  )}
                 </span>
                 <span
                   className={`icon2 ${
