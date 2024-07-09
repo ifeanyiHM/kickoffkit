@@ -112,7 +112,7 @@ const MainPage = forwardRef<HTMLDivElement, MainPageProps>(
               <div className="price">
                 <span>₦{product.price.toLocaleString()}</span>
                 <span>
-                  4.5 <IoStar className="icon" />
+                  {product.rating} <IoStar className="icon" />
                 </span>
               </div>
               <p>
