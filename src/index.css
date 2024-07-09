@@ -717,6 +717,35 @@ footer .copyright span {
 .check-out-pages .check-out-form .container .payment form .det div {
   flex-grow: 1;
 }
+.check-out-pages .check-out-form .container .delivery form .inp,
+.check-out-pages .check-out-form .container .payment form .inp {
+  position: relative;
+}
+.check-out-pages .check-out-form .container .delivery form .inp div,
+.check-out-pages .check-out-form .container .delivery form .inp img,
+.check-out-pages .check-out-form .container .payment form .inp div,
+.check-out-pages .check-out-form .container .payment form .inp img {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}
+.check-out-pages .check-out-form .container .delivery form .inp .icon,
+.check-out-pages .check-out-form .container .payment form .inp .icon {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+.check-out-pages .check-out-form .container .delivery form .inp div,
+.check-out-pages .check-out-form .container .payment form .inp div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 5rem;
+}
+.check-out-pages .check-out-form .container .delivery form .inpp input,
+.check-out-pages .check-out-form .container .payment form .inpp input {
+  padding-left: 3rem;
+}
 .check-out-pages .cart-page-container {
   display: flex;
   flex-direction: column-reverse;
@@ -976,7 +1005,7 @@ footer .copyright span {
   color: rgba(0, 0, 0, 0.5019607843);
 }
 .product-not-found .icon {
-  font-size: 20rem;
+  font-size: 10rem;
   color: rgba(0, 0, 0, 0.1215686275);
 }
 

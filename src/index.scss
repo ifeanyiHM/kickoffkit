@@ -741,6 +741,35 @@ footer {
               flex-grow: 1;
             }
           }
+
+          .inp {
+            position: relative;
+
+            div,
+            img {
+              position: absolute;
+              left: 1rem;
+              bottom: 1rem;
+            }
+
+            .icon {
+              position: absolute;
+
+              bottom: 1rem;
+              right: 1rem;
+            }
+
+            div {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              width: 5rem;
+            }
+          }
+
+          .inpp input {
+            padding-left: 3rem;
+          }
         }
       }
     }
@@ -807,8 +836,9 @@ footer {
   justify-content: center;
   text-align: center;
   color: #00000080;
+
   .icon {
-    font-size: 20rem;
+    font-size: 10rem;
     color: #0000001f;
   }
 }

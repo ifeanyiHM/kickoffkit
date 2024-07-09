@@ -1,5 +1,8 @@
 import { ReactNode, useState } from "react";
 
+import { FaAngleDown } from "react-icons/fa6";
+import mastercard from "../assets/Mastercard.svg";
+
 interface CheckOutFormProps {
   children: ReactNode;
 }
@@ -47,7 +50,7 @@ function CheckOutForm({ children }: CheckOutFormProps) {
               </div>
               <div>
                 <label htmlFor="">Phone number*</label>
-                <input type="text" placeholder="+234" />
+                <input type="text" placeholder="NG +234" />
               </div>
             </div>
             <div>
@@ -59,13 +62,15 @@ function CheckOutForm({ children }: CheckOutFormProps) {
               <input type="text" placeholder="Address Line2" />
             </div>
             <div className="details">
-              <div>
+              <div className="inp">
                 <label htmlFor="">CountryRegion*</label>
                 <input type="text" placeholder="CountryRegion*" />
+                <FaAngleDown className="icon" />
               </div>
-              <div>
+              <div className="inp">
                 <label htmlFor="">State*</label>
                 <input type="text" placeholder="State*" />
+                <FaAngleDown className="icon" />
               </div>
             </div>
             <div className="details">
@@ -104,9 +109,10 @@ function CheckOutForm({ children }: CheckOutFormProps) {
                 <label htmlFor="">Name on Card*</label>
                 <input type="text" placeholder="Name on Card*" />
               </div>
-              <div>
+              <div className="inp inpp">
                 <label htmlFor="">Card Number*</label>
                 <input type="text" placeholder="1234 1234 1234 1234" />
+                <img src={mastercard} alt="mastercard" />
               </div>
             </div>
             <div className="det">
