@@ -3,9 +3,10 @@ import deskImgHeader from "../../assets/Hero-Image-dsk.svg";
 
 interface HeaderBodyProps {
   desktopView: boolean;
+  scrollToProductPage: () => void;
 }
 
-function HeaderBody({ desktopView }: HeaderBodyProps) {
+function HeaderBody({ desktopView, scrollToProductPage }: HeaderBodyProps) {
   return (
     <div className="header-body">
       <img
@@ -21,7 +22,7 @@ function HeaderBody({ desktopView }: HeaderBodyProps) {
           players and fans alike, our jerseys combine performance, comfort, and
           style. Show your team spirit and elevate your game with Kickoff Kits!
         </p>
-        <button>Shop Now</button>
+        <button onClick={scrollToProductPage}>Shop Now</button>
       </div>
     </div>
   );

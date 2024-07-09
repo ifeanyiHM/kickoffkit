@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -23,15 +23,16 @@ function App() {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [likedProducts, setLikedProducts] = useState<number[]>([]);
 
-  function handleLikes(id: number) {
-    setLikedProducts((likes) =>
-      likes.includes(id) ? likes.filter((id) => id !== id) : [...likes, id]
-    );
-  }
+  const productPageRef = useRef<HTMLDivElement>(null);
 
   //search product by title
   const searchedProducts = productData.filter((item) =>
     item.title.toLowerCase().includes(query.toLowerCase())
+  );
+
+  //display in the see more section products that is not in the cart
+  const filteredProductData = searchedProducts.filter(
+    (product) => !productCart.some((cart) => cart.id === product.id)
   );
 
   //add product to array of selected product
@@ -51,10 +52,18 @@ function App() {
     );
   }
 
-  //display in the see more section products that is not in the cart
-  const filteredProductData = searchedProducts.filter(
-    (product) => !productCart.some((cart) => cart.id === product.id)
-  );
+  //to like products
+  function handleLikes(id: number) {
+    setLikedProducts((likes) =>
+      likes.includes(id) ? likes.filter((id) => id !== id) : [...likes, id]
+    );
+  }
+
+  const scrollToProductPage = () => {
+    if (productPageRef.current) {
+      productPageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   //clear notification
   useEffect(
@@ -70,6 +79,7 @@ function App() {
     [isSelected]
   );
 
+  //change certain things when navigating desktop and mobile
   useEffect(
     function () {
       const mq = window.matchMedia("(min-width: 1100px)");
@@ -97,9 +107,13 @@ function App() {
             element={
               <>
                 <Header>
-                  <HeaderBody desktopView={desktopView} />
+                  <HeaderBody
+                    desktopView={desktopView}
+                    scrollToProductPage={scrollToProductPage}
+                  />
                 </Header>
                 <MainPage
+                  ref={productPageRef}
                   desktopView={desktopView}
                   productSelected={productSelected}
                   addToCart={addToCart}
