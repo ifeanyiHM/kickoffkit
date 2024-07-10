@@ -12,6 +12,7 @@ import { FaAnglesRight } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { PiMaskSadLight } from "react-icons/pi";
 import { IoIosHeart } from "react-icons/io";
+import ProductNotFound from "../../Utilities/ProductNotFound";
 
 const MainPage = () => {
   const {
@@ -29,13 +30,13 @@ const MainPage = () => {
   //return not found if no products
   if (searchedProducts.length < 1)
     return (
-      <div className="product-not-found">
+      <ProductNotFound>
         <PiMaskSadLight className="icon" />
         <h1>
           We couldn't find any product that match your search criteria. <br />
           Please try a different product....
         </h1>
-      </div>
+      </ProductNotFound>
     );
 
   //display main page

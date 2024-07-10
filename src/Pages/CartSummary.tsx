@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
+import { ProductContext } from "../Context/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoIosHeart } from "react-icons/io";
-
-import { useNavigate } from "react-router-dom";
-import { ProductContext } from "../Context/ProductContext";
+import { VscJersey } from "react-icons/vsc";
+import ProductNotFound from "../Utilities/ProductNotFound";
 
 function CartSummary() {
   const {
@@ -44,14 +45,19 @@ function CartSummary() {
     );
   }, [productCart, setProductSelected]);
 
+  if (productCart.length < 1)
+    return (
+      <ProductNotFound>
+        <VscJersey className="icon" />
+
+        <h1>Your cart is empty start shopping</h1>
+      </ProductNotFound>
+    );
+
   return (
     <div className="cart-page-container">
       <div className="cart">
-        {productCart.length < 1 ? (
-          <h1>Your cart is empty start shopping</h1>
-        ) : (
-          <h1>Your item</h1>
-        )}
+        {productCart.length >= 1 ? <h1>Your item</h1> : ""}
         <div className="container">
           {productCart.map((product, index: number) => (
             <div className="item-container" key={index}>
