@@ -1,7 +1,7 @@
 import mobImgHeader from "../../assets/Hero-Image.svg";
 import deskImgHeader from "../../assets/Hero-Image-dsk.svg";
 import { useContext } from "react";
-import { ProductContext } from "../../App";
+import { ProductContext } from "../../Context/ProductContext";
 
 // interface HeaderBodyProps {
 //   desktopView: boolean;

@@ -6,7 +6,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { IoIosHeart } from "react-icons/io";
 
 import { useNavigate } from "react-router-dom";
-import { ProductContext } from "../App";
+import { ProductContext } from "../Context/ProductContext";
 
 // interface CartSummaryProps {
 //   productCart: ProductDataProps[];

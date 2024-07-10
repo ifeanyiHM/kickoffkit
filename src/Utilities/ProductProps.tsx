@@ -17,6 +17,8 @@ export interface ProductProps {
   setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
   title: number;
   filteredProductData: ProductDataProps[];
+  isSelected: boolean;
+  productPageRef: React.RefObject<HTMLDivElement>;
 }
 
 export const defaultProductProps: ProductProps = {
@@ -36,4 +38,6 @@ export const defaultProductProps: ProductProps = {
   setProductSelected: () => {},
   title: 0,
   filteredProductData: [],
+  isSelected: false,
+  productPageRef: { current: null },
 };

@@ -7,7 +7,7 @@ import { IoIosHeart } from "react-icons/io";
 
 // import { ProductDataProps } from "../data/ProductData";
 import { useContext } from "react";
-import { ProductContext } from "../App";
+import { ProductContext } from "../Context/ProductContext";
 
 // interface SeeMoreProps {
 //   filteredProductData: ProductDataProps[];

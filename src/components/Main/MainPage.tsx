@@ -1,4 +1,6 @@
-import { forwardRef, useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { ProductContext } from "../../Context/ProductContext";
+
 import { IoFilter } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
@@ -10,9 +12,8 @@ import { FaAnglesRight } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { PiMaskSadLight } from "react-icons/pi";
 import { IoIosHeart } from "react-icons/io";
-import { ProductContext } from "../../App";
 
-const MainPage = forwardRef<HTMLDivElement>((_, ref) => {
+const MainPage = () => {
   const {
     desktopView,
     productSelected,
@@ -20,6 +21,7 @@ const MainPage = forwardRef<HTMLDivElement>((_, ref) => {
     searchedProducts,
     likedProducts,
     handleLikes,
+    productPageRef,
   } = useContext(ProductContext);
 
   const [productList, setProductList] = useState<string>("arrival");
@@ -38,7 +40,7 @@ const MainPage = forwardRef<HTMLDivElement>((_, ref) => {
 
   //display main page
   return (
-    <main ref={ref}>
+    <main ref={productPageRef}>
       <div className="nav">
         <button
           className={productList === "all" ? "active" : ""}
@@ -140,6 +142,6 @@ const MainPage = forwardRef<HTMLDivElement>((_, ref) => {
       </div>
     </main>
   );
-});
+};
 
 export default MainPage;

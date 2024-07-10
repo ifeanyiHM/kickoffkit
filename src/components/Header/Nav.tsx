@@ -8,7 +8,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 // import { ProductDataProps } from "../../data/ProductData";
 import { useContext } from "react";
-import { ProductContext } from "../../App";
+import { ProductContext } from "../../Context/ProductContext";
 
 // interface NavProps {
 //   openMenu: boolean;
