@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { ProductProps, defaultProductProps } from "./Utilities/ProductProps";
+import { ProductDataProps, productData } from "./data/ProductData";
 
 import Header from "./components/Header/Header";
 import MainPage from "./components/Main/MainPage";
@@ -7,12 +10,13 @@ import FooterPage from "./components/Footer/FooterPage";
 import Nav from "./components/Header/Nav";
 import HeaderBody from "./components/Header/HeaderBody";
 import CartPage from "./Pages/CartPage";
-import { ProductDataProps, productData } from "./data/ProductData";
 import SeeMore from "./Pages/SeeMore";
 import CartSummary from "./Pages/CartSummary";
 import CheckOutPage from "./Pages/CheckOutPage";
 import CheckOutForm from "./Pages/CheckOutForm";
 import SuccessModal from "./Utilities/SuccessModal";
+
+export const ProductContext = createContext<ProductProps>(defaultProductProps);
 
 function App() {
   const [desktopView, setDesktopView] = useState<boolean>(false);
@@ -91,36 +95,40 @@ function App() {
     [setDesktopView]
   );
   return (
-    <>
+    <ProductContext.Provider
+      value={{
+        //states
+        openMenu: openMenu,
+        setOpenMenu: setOpenMenu,
+        productCart: productCart,
+        setProductCart: setProductCart,
+        query: query,
+        setQuery: setQuery,
+        productSelected: productSelected,
+        setProductSelected: setProductSelected,
+        desktopView: desktopView,
+
+        //functions
+        scrollToProductPage: scrollToProductPage,
+        title: 15,
+        addToCart: addToCart,
+        searchedProducts: searchedProducts,
+        likedProducts: likedProducts,
+        handleLikes: handleLikes,
+        filteredProductData: filteredProductData,
+      }}
+    >
       <BrowserRouter>
-        <Nav
-          openMenu={openMenu}
-          setOpenMenu={setOpenMenu}
-          productCart={productCart}
-          desktopView={desktopView}
-          query={query}
-          setQuery={setQuery}
-        />
+        <Nav />
         <Routes>
           <Route
             index
             element={
               <>
                 <Header>
-                  <HeaderBody
-                    desktopView={desktopView}
-                    scrollToProductPage={scrollToProductPage}
-                  />
+                  <HeaderBody />
                 </Header>
-                <MainPage
-                  ref={productPageRef}
-                  desktopView={desktopView}
-                  productSelected={productSelected}
-                  addToCart={addToCart}
-                  searchedProducts={searchedProducts}
-                  likedProducts={likedProducts}
-                  handleLikes={handleLikes}
-                />
+                <MainPage ref={productPageRef} />
               </>
             }
           ></Route>
@@ -129,22 +137,8 @@ function App() {
             element={
               <>
                 <CartPage>
-                  <CartSummary
-                    productCart={productCart}
-                    setProductCart={setProductCart}
-                    setProductSelected={setProductSelected}
-                    title={15}
-                    likedProducts={likedProducts}
-                    handleLikes={handleLikes}
-                  />
-                  <SeeMore
-                    filteredProductData={filteredProductData}
-                    desktopView={desktopView}
-                    productSelected={productSelected}
-                    addToCart={addToCart}
-                    likedProducts={likedProducts}
-                    handleLikes={handleLikes}
-                  />
+                  <CartSummary />
+                  <SeeMore />
                 </CartPage>
               </>
             }
@@ -153,33 +147,12 @@ function App() {
             path="checkout"
             element={
               <>
-                <Nav
-                  openMenu={openMenu}
-                  setOpenMenu={setOpenMenu}
-                  productCart={productCart}
-                  desktopView={desktopView}
-                  query={query}
-                  setQuery={setQuery}
-                />
+                <Nav />
                 <CheckOutPage>
                   <CheckOutForm>
-                    <CartSummary
-                      productCart={productCart}
-                      setProductCart={setProductCart}
-                      setProductSelected={setProductSelected}
-                      title={15}
-                      likedProducts={likedProducts}
-                      handleLikes={handleLikes}
-                    />
+                    <CartSummary />
                   </CheckOutForm>
-                  <SeeMore
-                    filteredProductData={filteredProductData}
-                    desktopView={desktopView}
-                    productSelected={productSelected}
-                    addToCart={addToCart}
-                    likedProducts={likedProducts}
-                    handleLikes={handleLikes}
-                  />
+                  <SeeMore />
                 </CheckOutPage>
               </>
             }
@@ -188,7 +161,7 @@ function App() {
         <FooterPage />
         {isSelected && <SuccessModal />}
       </BrowserRouter>
-    </>
+    </ProductContext.Provider>
   );
 }
 

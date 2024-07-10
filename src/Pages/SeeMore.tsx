@@ -5,25 +5,28 @@ import { IoStar } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosHeart } from "react-icons/io";
 
-import { ProductDataProps } from "../data/ProductData";
+// import { ProductDataProps } from "../data/ProductData";
+import { useContext } from "react";
+import { ProductContext } from "../App";
 
-interface SeeMoreProps {
-  filteredProductData: ProductDataProps[];
-  desktopView: boolean;
-  productSelected: number[];
-  addToCart: (product: ProductDataProps, index: number) => void;
-  likedProducts: number[];
-  handleLikes: (id: number) => void;
-}
+// interface SeeMoreProps {
+//   filteredProductData: ProductDataProps[];
+//   desktopView: boolean;
+//   productSelected: number[];
+//   addToCart: (product: ProductDataProps, index: number) => void;
+//   likedProducts: number[];
+//   handleLikes: (id: number) => void;
+// }
 
-function SeeMore({
-  filteredProductData,
-  productSelected,
-  desktopView,
-  addToCart,
-  likedProducts,
-  handleLikes,
-}: SeeMoreProps) {
+function SeeMore() {
+  const {
+    filteredProductData,
+    productSelected,
+    desktopView,
+    addToCart,
+    likedProducts,
+    handleLikes,
+  } = useContext(ProductContext);
   return (
     <div className="see-more">
       <div className="head">
@@ -59,7 +62,7 @@ function SeeMore({
               <div className="price">
                 <span>₦{product.price.toLocaleString()}</span>
                 <span>
-                  4.5 <IoStar className="icon" />
+                  {product.rating} <IoStar className="icon" />
                 </span>
               </div>
               <p>{product.title.slice(0, 15)}...</p>

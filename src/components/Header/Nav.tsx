@@ -6,25 +6,23 @@ import { GoPerson } from "react-icons/go";
 import { IoCartSharp } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { ProductDataProps } from "../../data/ProductData";
+// import { ProductDataProps } from "../../data/ProductData";
+import { useContext } from "react";
+import { ProductContext } from "../../App";
 
-interface NavProps {
-  openMenu: boolean;
-  setOpenMenu: (type: boolean) => void;
-  productCart: ProductDataProps[];
-  desktopView: boolean;
-  query: string;
-  setQuery: (type: string) => void;
-}
+// interface NavProps {
+//   openMenu: boolean;
+//   setOpenMenu: (type: boolean) => void;
+//   productCart: ProductDataProps[];
+//   desktopView: boolean;
+//   query: string;
+//   setQuery: (type: string) => void;
+// }
 
-function Nav({
-  openMenu,
-  setOpenMenu,
-  productCart,
-  desktopView,
-  query,
-  setQuery,
-}: NavProps) {
+function Nav() {
+  const { openMenu, setOpenMenu, productCart, desktopView, query, setQuery } =
+    useContext(ProductContext);
+
   const navigate = useNavigate();
 
   const numOfProductCart = productCart.length;

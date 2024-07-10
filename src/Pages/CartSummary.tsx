@@ -1,30 +1,31 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoIosHeart } from "react-icons/io";
 
-import { ProductDataProps } from "../data/ProductData";
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../App";
 
-interface CartSummaryProps {
-  productCart: ProductDataProps[];
-  setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
-  setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
-  title: number;
-  likedProducts: number[];
-  handleLikes: (id: number) => void;
-}
+// interface CartSummaryProps {
+//   productCart: ProductDataProps[];
+//   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
+//   setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
+//   title: number;
+//   likedProducts: number[];
+//   handleLikes: (id: number) => void;
+// }
 
-function CartSummary({
-  productCart,
-  setProductCart,
-  setProductSelected,
-  title,
-  likedProducts,
-  handleLikes,
-}: CartSummaryProps) {
+function CartSummary() {
+  const {
+    productCart,
+    setProductCart,
+    setProductSelected,
+    title,
+    likedProducts,
+    handleLikes,
+  } = useContext(ProductContext);
   const numOfProductCart = productCart.length;
 
   const navigate = useNavigate();
@@ -97,7 +98,6 @@ function CartSummary({
                       <IoIosHeartEmpty className="icon2" />
                     )}
                   </span>
-                  {/* <IoIosHeartEmpty className="icon2" /> */}
                 </div>
               </div>
             </div>
