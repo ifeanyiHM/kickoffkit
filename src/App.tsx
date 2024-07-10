@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
-import { ProductContext, ProductProvider } from "./Context/ProductContext";
+import { ProductProvider, useProduct } from "./Context/ProductContext";
 
 import Header from "./components/Header/Header";
 import MainPage from "./components/Main/MainPage";
@@ -23,7 +22,7 @@ function App() {
 }
 
 function AppContent() {
-  const { isSelected } = useContext(ProductContext);
+  const { isSelected } = useProduct();
   return (
     <BrowserRouter>
       <Nav />

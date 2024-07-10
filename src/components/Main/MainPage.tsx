@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { ProductContext } from "../../Context/ProductContext";
+import { useState } from "react";
+import { useProduct } from "../../Context/ProductContext";
 
 import { IoFilter } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
@@ -23,7 +23,7 @@ const MainPage = () => {
     likedProducts,
     handleLikes,
     productPageRef,
-  } = useContext(ProductContext);
+  } = useProduct();
 
   const [productList, setProductList] = useState<string>("arrival");
 

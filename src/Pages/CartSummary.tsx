@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { ProductContext } from "../Context/ProductContext";
+import { useEffect } from "react";
+import { useProduct } from "../Context/ProductContext";
 import { useNavigate } from "react-router-dom";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -18,7 +18,7 @@ function CartSummary() {
     title,
     likedProducts,
     handleLikes,
-  } = useContext(ProductContext);
+  } = useProduct();
   const numOfProductCart = productCart.length;
 
   const navigate = useNavigate();

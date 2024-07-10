@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useEffect, useRef, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ProductProps, defaultProductProps } from "../Utilities/ProductProps";
 import { ProductDataProps, productData } from "../data/ProductData";
 
@@ -115,4 +122,12 @@ function ProductProvider({ children }: ProductProviderProps) {
   );
 }
 
-export { ProductProvider, ProductContext };
+function useProduct() {
+  const context = useContext(ProductContext);
+  if (context === undefined) {
+    throw new Error("useProduct was used outside a ProductProvider");
+  }
+  return context;
+}
+
+export { ProductProvider, useProduct };

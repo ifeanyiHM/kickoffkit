@@ -1,27 +1,16 @@
 import logo from "../../assets/Kickoff-Logo.svg";
+import { useNavigate } from "react-router-dom";
+import { useProduct } from "../../Context/ProductContext";
 
 import { IoMdMenu } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import { IoCartSharp } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
-// import { ProductDataProps } from "../../data/ProductData";
-import { useContext } from "react";
-import { ProductContext } from "../../Context/ProductContext";
-
-// interface NavProps {
-//   openMenu: boolean;
-//   setOpenMenu: (type: boolean) => void;
-//   productCart: ProductDataProps[];
-//   desktopView: boolean;
-//   query: string;
-//   setQuery: (type: string) => void;
-// }
 
 function Nav() {
   const { openMenu, setOpenMenu, productCart, desktopView, query, setQuery } =
-    useContext(ProductContext);
+    useProduct();
 
   const navigate = useNavigate();
 

@@ -1,7 +1,9 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { FaAngleDown } from "react-icons/fa6";
 import mastercard from "../assets/Mastercard.svg";
+import { useProduct } from "../Context/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 interface CheckOutFormProps {
   children: ReactNode;
@@ -10,6 +12,18 @@ interface CheckOutFormProps {
 function CheckOutForm({ children }: CheckOutFormProps) {
   const [deliveryOptions, setDeliveryOptions] = useState<string>("delivery");
   const [paymentOptions, setPaymentOptions] = useState<string>("card");
+
+  const { productCart } = useProduct();
+  const navigate = useNavigate();
+
+  useEffect(
+    function () {
+      if (productCart.length < 1) {
+        navigate(-1);
+      }
+    },
+    [productCart.length, navigate]
+  );
 
   return (
     <div className="check-out-form">
@@ -129,6 +143,7 @@ function CheckOutForm({ children }: CheckOutFormProps) {
           </form>
         </div>
       </div>
+
       {children}
     </div>
   );

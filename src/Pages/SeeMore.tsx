@@ -5,18 +5,7 @@ import { IoStar } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosHeart } from "react-icons/io";
 
-// import { ProductDataProps } from "../data/ProductData";
-import { useContext } from "react";
-import { ProductContext } from "../Context/ProductContext";
-
-// interface SeeMoreProps {
-//   filteredProductData: ProductDataProps[];
-//   desktopView: boolean;
-//   productSelected: number[];
-//   addToCart: (product: ProductDataProps, index: number) => void;
-//   likedProducts: number[];
-//   handleLikes: (id: number) => void;
-// }
+import { useProduct } from "../Context/ProductContext";
 
 function SeeMore() {
   const {
@@ -26,7 +15,8 @@ function SeeMore() {
     addToCart,
     likedProducts,
     handleLikes,
-  } = useContext(ProductContext);
+  } = useProduct();
+
   return (
     <div className="see-more">
       <div className="head">
