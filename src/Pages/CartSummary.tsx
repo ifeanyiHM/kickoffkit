@@ -8,15 +8,6 @@ import { IoIosHeart } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../Context/ProductContext";
 
-// interface CartSummaryProps {
-//   productCart: ProductDataProps[];
-//   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
-//   setProductSelected: React.Dispatch<React.SetStateAction<number[]>>;
-//   title: number;
-//   likedProducts: number[];
-//   handleLikes: (id: number) => void;
-// }
-
 function CartSummary() {
   const {
     productCart,
@@ -56,7 +47,11 @@ function CartSummary() {
   return (
     <div className="cart-page-container">
       <div className="cart">
-        <h1>Your item</h1>
+        {productCart.length < 1 ? (
+          <h1>Your cart is empty start shopping</h1>
+        ) : (
+          <h1>Your item</h1>
+        )}
         <div className="container">
           {productCart.map((product, index: number) => (
             <div className="item-container" key={index}>
