@@ -6,7 +6,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoIosHeart } from "react-icons/io";
-import { VscJersey } from "react-icons/vsc";
+import { TiShoppingCart } from "react-icons/ti";
+
 import ProductNotFound from "../Utilities/ProductNotFound";
 
 function CartSummary() {
@@ -48,9 +49,10 @@ function CartSummary() {
   if (productCart.length < 1)
     return (
       <ProductNotFound>
-        <VscJersey className="icon" />
-
-        <h1>Your cart is empty start shopping</h1>
+        <div style={{ marginBottom: "13rem" }}>
+          <TiShoppingCart className="icon" />
+          <h1>Your cart is empty start shopping</h1>
+        </div>
       </ProductNotFound>
     );
 

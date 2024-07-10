@@ -1054,8 +1054,11 @@ footer .copyright span {
   color: rgba(0, 0, 0, 0.5019607843);
 }
 .product-not-found .icon {
-  font-size: 10rem;
+  font-size: 8rem;
   color: rgba(0, 0, 0, 0.1215686275);
+}
+.product-not-found h1 {
+  font-size: 1.5rem;
 }
 
 @media screen and (min-width: 700px) {
