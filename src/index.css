@@ -1059,6 +1059,7 @@ footer .copyright span {
 }
 .product-not-found h1 {
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 700px) {

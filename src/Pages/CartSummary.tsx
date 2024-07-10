@@ -51,7 +51,9 @@ function CartSummary() {
       <ProductNotFound>
         <div style={{ marginBottom: "13rem" }}>
           <TiShoppingCart className="icon" />
-          <h1>Your cart is empty start shopping</h1>
+          <h1 style={{ marginTop: "1rem" }}>
+            Your cart is empty start shopping
+          </h1>
         </div>
       </ProductNotFound>
     );
