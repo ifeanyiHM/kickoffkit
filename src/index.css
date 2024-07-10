@@ -1492,6 +1492,9 @@ footer .copyright span {
   .success span {
     font-size: 1.125rem;
   }
+  .product-not-found .icon {
+    font-size: 15rem;
+  }
 }
 @media screen and (min-width: 1440px) {
   nav {
