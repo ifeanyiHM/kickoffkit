@@ -441,6 +441,11 @@ footer .container .sign-up .socials {
 }
 footer .container .sign-up .socials .icon {
   font-size: 1.219rem;
+  transition: all 0.4s;
+}
+footer .container .sign-up .socials .icon:hover {
+  transform: scale(1.3);
+  transition: all 0.4s;
 }
 footer .copyright {
   margin: 1.5rem 0;
