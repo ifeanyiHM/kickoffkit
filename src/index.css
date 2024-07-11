@@ -289,9 +289,15 @@ main .product {
 }
 main .product .product-container {
   width: 44.44vw;
+  transition: all 0.4s;
+}
+main .product .product-container:hover {
+  transform: scale(1.03);
+  transition: all 0.4s;
 }
 main .product .product-container .img-container {
   position: relative;
+  transition: all 0.4s;
 }
 main .product .product-container .img-container img {
   width: 100%;
@@ -609,6 +615,7 @@ footer .copyright span {
 }
 .cart-page .see-more .head .button .icon:hover {
   color: #02611f;
+  transform: scale(1.1);
 }
 .cart-page .see-more .product {
   display: grid;
@@ -618,12 +625,22 @@ footer .copyright span {
   border-top: 1px solid rgba(0, 0, 0, 0.2392156863);
   border-top: none;
   padding-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
+  transition: all 0.4s;
 }
 .cart-page .see-more .product .product-container {
   width: 44.44vw;
+  transition: all 0.4s;
+}
+.cart-page .see-more .product .product-container:hover {
+  transform: scale(1.03);
+  transition: all 0.4s;
 }
 .cart-page .see-more .product .product-container .img-container {
   position: relative;
+  transition: all 0.4s;
 }
 .cart-page .see-more .product .product-container .img-container img {
   width: 100%;
@@ -673,6 +690,9 @@ footer .copyright span {
   font-size: 0.875rem;
   padding: 0.25rem 0 1.5rem 0;
   color: rgba(0, 0, 0, 0.6);
+}
+.cart-page .see-more .product .product-container {
+  flex-shrink: 0;
 }
 
 .check-out-pages {
@@ -956,6 +976,7 @@ footer .copyright span {
 }
 .check-out-pages .see-more .head .button .icon:hover {
   color: #02611f;
+  transform: scale(1.1);
 }
 .check-out-pages .see-more .product {
   display: grid;
@@ -965,12 +986,22 @@ footer .copyright span {
   border-top: 1px solid rgba(0, 0, 0, 0.2392156863);
   border-top: none;
   padding-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
+  transition: all 0.4s;
 }
 .check-out-pages .see-more .product .product-container {
   width: 44.44vw;
+  transition: all 0.4s;
+}
+.check-out-pages .see-more .product .product-container:hover {
+  transform: scale(1.03);
+  transition: all 0.4s;
 }
 .check-out-pages .see-more .product .product-container .img-container {
   position: relative;
+  transition: all 0.4s;
 }
 .check-out-pages .see-more .product .product-container .img-container img {
   width: 100%;
@@ -1020,6 +1051,9 @@ footer .copyright span {
   font-size: 0.875rem;
   padding: 0.25rem 0 1.5rem 0;
   color: rgba(0, 0, 0, 0.6);
+}
+.check-out-pages .see-more .product .product-container {
+  flex-shrink: 0;
 }
 
 .success {

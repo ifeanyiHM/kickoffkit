@@ -29,9 +29,16 @@ $hover-color: #02611f;
 
   .product-container {
     width: 44.44vw;
+    transition: all 0.4s;
+
+    &:hover {
+      transform: scale(1.03);
+      transition: all 0.4s;
+    }
 
     .img-container {
       position: relative;
+      transition: all 0.4s;
 
       img {
         width: 100%;
@@ -119,6 +126,7 @@ $hover-color: #02611f;
 
         &:hover {
           color: $hover-color;
+          transform: scale(1.1);
         }
       }
     }
@@ -128,6 +136,14 @@ $hover-color: #02611f;
     @include productStyles;
     border-top: none;
     padding-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow: hidden;
+    transition: all 0.4s;
+
+    .product-container {
+      flex-shrink: 0;
+    }
   }
 }
 
