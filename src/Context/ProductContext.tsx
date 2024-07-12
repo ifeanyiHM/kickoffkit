@@ -24,6 +24,7 @@ function ProductProvider({ children }: ProductProviderProps) {
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [likedProducts, setLikedProducts] = useState<number[]>([]);
   const [isInCart, setIsInCart] = useState<boolean>(false);
+  const [isPaymentMade, setIsPaymentMade] = useState<boolean>(false);
 
   const productPageRef = useRef<HTMLDivElement>(null);
 
@@ -114,6 +115,8 @@ function ProductProvider({ children }: ProductProviderProps) {
         desktopView: desktopView,
         isSelected: isSelected,
         isInCart: isInCart,
+        isPaymentMade: isPaymentMade,
+        setIsPaymentMade: setIsPaymentMade,
         productPageRef: productPageRef,
 
         //functions

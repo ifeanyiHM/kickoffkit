@@ -19,6 +19,8 @@ export interface ProductProps {
   filteredProductData: ProductDataProps[];
   isSelected: boolean;
   isInCart: boolean;
+  isPaymentMade: boolean;
+  setIsPaymentMade: (type: boolean) => void;
   productPageRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -41,5 +43,7 @@ export const defaultProductProps: ProductProps = {
   filteredProductData: [],
   isSelected: false,
   isInCart: false,
+  isPaymentMade: false,
+  setIsPaymentMade: () => {},
   productPageRef: { current: null },
 };

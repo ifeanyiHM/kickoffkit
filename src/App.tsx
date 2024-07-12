@@ -12,6 +12,7 @@ import CartSummary from "./Pages/CartSummary";
 import CheckOutPage from "./Pages/CheckOutPage";
 import CheckOutForm from "./Pages/CheckOutForm";
 import SuccessModal from "./Utilities/SuccessModal";
+import PaymentSuccessful from "./Utilities/PaymentSuccessful";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         </Routes>
         <FooterPage />
         <SuccessModal />
+        <PaymentSuccessful />
       </BrowserRouter>
     </ProductProvider>
   );
