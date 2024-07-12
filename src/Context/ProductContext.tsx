@@ -23,6 +23,7 @@ function ProductProvider({ children }: ProductProviderProps) {
   const [query, setQuery] = useState<string>("");
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [likedProducts, setLikedProducts] = useState<number[]>([]);
+  const [isInCart, setIsInCart] = useState<boolean>(false);
 
   const productPageRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +46,7 @@ function ProductProvider({ children }: ProductProviderProps) {
   function addToCart(product: ProductDataProps) {
     // If the product is already in the cart, do nothing
     if (productCart.some((cartItem) => cartItem.id === product.id)) {
+      setIsInCart(true);
       return;
     }
 
@@ -74,15 +76,16 @@ function ProductProvider({ children }: ProductProviderProps) {
   //clear notification
   useEffect(
     function () {
-      if (isSelected) {
+      if (isSelected || isInCart) {
         const timeout = setTimeout(() => {
           setIsSelected(false);
+          setIsInCart(false);
         }, 3000);
 
         return () => clearTimeout(timeout);
       }
     },
-    [isSelected]
+    [isSelected, isInCart]
   );
 
   //change certain things when navigating desktop and mobile
@@ -110,6 +113,7 @@ function ProductProvider({ children }: ProductProviderProps) {
         setProductSelected: setProductSelected,
         desktopView: desktopView,
         isSelected: isSelected,
+        isInCart: isInCart,
         productPageRef: productPageRef,
 
         //functions

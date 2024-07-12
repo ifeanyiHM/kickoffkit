@@ -22,7 +22,7 @@ function App() {
 }
 
 function AppContent() {
-  const { isSelected } = useProduct();
+  const { isSelected, isInCart } = useProduct();
   return (
     <BrowserRouter>
       <Nav />
@@ -66,6 +66,7 @@ function AppContent() {
       </Routes>
       <FooterPage />
       {isSelected && <SuccessModal />}
+      {isInCart && <SuccessModal />}
     </BrowserRouter>
   );
 }

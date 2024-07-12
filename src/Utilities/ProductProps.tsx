@@ -18,6 +18,7 @@ export interface ProductProps {
   title: number;
   filteredProductData: ProductDataProps[];
   isSelected: boolean;
+  isInCart: boolean;
   productPageRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -39,5 +40,6 @@ export const defaultProductProps: ProductProps = {
   title: 0,
   filteredProductData: [],
   isSelected: false,
+  isInCart: false,
   productPageRef: { current: null },
 };
