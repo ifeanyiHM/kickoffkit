@@ -27,51 +27,55 @@ function Nav() {
 
   return (
     <nav>
-      <div className="mobile">
-        <div className="logo" onClick={() => goToCart("/")}>
-          <img src={logo} alt="logo" />
-        </div>
-        <div className="search-cart">
-          <CiSearch className="icon-search" />
-          <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
-            {numOfProductCart > 0 ? <span>{numOfProductCart}</span> : ""}
-            {openMenu ? (
-              <IoCloseSharp className="icon" />
-            ) : (
-              <IoMdMenu className="icon" />
-            )}
+      <div className="navv">
+        <div className="mobile">
+          <div className="logo" onClick={() => goToCart("/")}>
+            <img src={logo} alt="logo" />
+          </div>
+          <div className="search-cart">
+            <CiSearch className="icon-search" />
+            <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
+              {numOfProductCart > 0 ? <span>{numOfProductCart}</span> : ""}
+              {openMenu ? (
+                <IoCloseSharp className="icon" />
+              ) : (
+                <IoMdMenu className="icon" />
+              )}
+            </div>
           </div>
         </div>
+        <ul className={openMenu ? "collapse" : ""}>
+          <li>
+            <IoMdMenu />
+            Menu
+          </li>
+          <li>
+            <input
+              type="text"
+              placeholder="Search for anything"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <CiSearch className="icon-search" />
+          </li>
+          <li>Track Order</li>
+          <li>Help</li>
+          <li>
+            <GoPerson /> Account
+          </li>
+          <li onClick={() => goToCart("/cart")}>
+            <IoCartSharp />
+            <span>cart</span>
+            <span
+              style={{
+                visibility: numOfProductCart > 0 ? "visible" : "hidden",
+              }}
+            >
+              {numOfProductCart}
+            </span>
+          </li>
+        </ul>
       </div>
-      <ul className={openMenu ? "collapse" : ""}>
-        <li>
-          <IoMdMenu />
-          Menu
-        </li>
-        <li>
-          <input
-            type="text"
-            placeholder="Search for anything"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <CiSearch className="icon-search" />
-        </li>
-        <li>Track Order</li>
-        <li>Help</li>
-        <li>
-          <GoPerson /> Account
-        </li>
-        <li onClick={() => goToCart("/cart")}>
-          <IoCartSharp />
-          <span>cart</span>
-          <span
-            style={{ visibility: numOfProductCart > 0 ? "visible" : "hidden" }}
-          >
-            {numOfProductCart}
-          </span>
-        </li>
-      </ul>
     </nav>
   );
 }
