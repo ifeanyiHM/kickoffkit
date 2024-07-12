@@ -80,7 +80,7 @@ function ProductProvider({ children }: ProductProviderProps) {
         const timeout = setTimeout(() => {
           setIsSelected(false);
           setIsInCart(false);
-        }, 3000);
+        }, 2000);
 
         return () => clearTimeout(timeout);
       }

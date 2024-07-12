@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ProductProvider, useProduct } from "./Context/ProductContext";
+import { ProductProvider } from "./Context/ProductContext";
 
 import Header from "./components/Header/Header";
 import MainPage from "./components/Main/MainPage";
@@ -16,58 +16,50 @@ import SuccessModal from "./Utilities/SuccessModal";
 function App() {
   return (
     <ProductProvider>
-      <AppContent />
-    </ProductProvider>
-  );
-}
-
-function AppContent() {
-  const { isSelected, isInCart } = useProduct();
-  return (
-    <BrowserRouter>
-      <Nav />
-      <Routes>
-        <Route
-          index
-          element={
-            <>
-              <Header>
-                <HeaderBody />
-              </Header>
-              <MainPage />
-            </>
-          }
-        ></Route>
-        <Route
-          path="cart"
-          element={
-            <>
-              <CartPage>
-                <CartSummary />
-                <SeeMore />
-              </CartPage>
-            </>
-          }
-        ></Route>
-        <Route
-          path="checkout"
-          element={
-            <>
-              <Nav />
-              <CheckOutPage>
-                <CheckOutForm>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route
+            index
+            element={
+              <>
+                <Header>
+                  <HeaderBody />
+                </Header>
+                <MainPage />
+              </>
+            }
+          ></Route>
+          <Route
+            path="cart"
+            element={
+              <>
+                <CartPage>
                   <CartSummary />
-                </CheckOutForm>
-                <SeeMore />
-              </CheckOutPage>
-            </>
-          }
-        ></Route>
-      </Routes>
-      <FooterPage />
-      {isSelected && <SuccessModal />}
-      {isInCart && <SuccessModal />}
-    </BrowserRouter>
+                  <SeeMore />
+                </CartPage>
+              </>
+            }
+          ></Route>
+          <Route
+            path="checkout"
+            element={
+              <>
+                <Nav />
+                <CheckOutPage>
+                  <CheckOutForm>
+                    <CartSummary />
+                  </CheckOutForm>
+                  <SeeMore />
+                </CheckOutPage>
+              </>
+            }
+          ></Route>
+        </Routes>
+        <FooterPage />
+        <SuccessModal />
+      </BrowserRouter>
+    </ProductProvider>
   );
 }
 
