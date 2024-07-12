@@ -28,6 +28,8 @@ function CartSummary() {
     0
   );
 
+  const orderSummaryPrice = totalPrice + 5000 + 3500;
+
   //delete product from the cart
   function clearProduct(id: number) {
     setProductCart((prod) => prod.filter((prod) => prod.id !== id));
@@ -126,7 +128,7 @@ function CartSummary() {
           </div>
           <div>
             <span>Total</span>
-            <span>{totalPrice.toLocaleString()}</span>
+            <span>{orderSummaryPrice.toLocaleString()}</span>
           </div>
         </div>
         <div className="coupon">
