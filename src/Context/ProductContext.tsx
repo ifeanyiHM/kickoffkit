@@ -43,6 +43,11 @@ function ProductProvider({ children }: ProductProviderProps) {
 
   //display selected product on the cart page when clicked
   function addToCart(product: ProductDataProps) {
+    // If the product is already in the cart, do nothing
+    if (productCart.some((cartItem) => cartItem.id === product.id)) {
+      return;
+    }
+
     handleCart(product);
     setIsSelected(true);
 
