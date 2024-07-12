@@ -1471,6 +1471,10 @@ footer {
     ul {
       @include ulstyles;
     }
+
+    .collapse {
+      @include ulstyles;
+    }
   }
 
   header {

@@ -1602,6 +1602,9 @@ footer .copyright span {
   nav ul li:nth-child(2) input {
     width: 33.75rem;
   }
+  nav .collapse li:nth-child(2) input {
+    width: 33.75rem;
+  }
   header {
     width: 77.5rem;
   }
