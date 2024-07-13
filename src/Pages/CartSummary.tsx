@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { useProduct } from "../Context/ProductContext";
 import { useNavigate } from "react-router-dom";
+import ProductNotFound from "../Utilities/ProductNotFound";
+import useProduct from "../Context/useProduct";
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoIosHeart } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-
-import ProductNotFound from "../Utilities/ProductNotFound";
 
 function CartSummary() {
   const {

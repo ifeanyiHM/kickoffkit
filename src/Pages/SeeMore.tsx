@@ -1,12 +1,12 @@
+import { useState } from "react";
+import useProduct from "../Context/useProduct";
+
 import { TfiArrowCircleLeft } from "react-icons/tfi";
 import { TfiArrowCircleRight } from "react-icons/tfi";
 import { IoCartOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosHeart } from "react-icons/io";
-
-import { useProduct } from "../Context/ProductContext";
-import { useState } from "react";
 
 function SeeMore() {
   const [curIndex, setCurIndex] = useState<number>(0);

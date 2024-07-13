@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import paymentsuccess from "../assets/payment-succes.svg";
-import { useProduct } from "../Context/ProductContext";
+import useProduct from "../Context/useProduct";
 
 function PaymentSuccessful() {
   const { isPaymentMade, setIsPaymentMade, setProductCart } = useProduct();

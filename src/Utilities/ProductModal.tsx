@@ -1,4 +1,4 @@
-import { useProduct } from "../Context/ProductContext";
+import useProduct from "../Context/useProduct";
 import { FaCheckCircle } from "react-icons/fa";
 
 function ProductModal() {

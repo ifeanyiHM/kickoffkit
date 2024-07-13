@@ -1,6 +1,6 @@
 import logo from "../../assets/Kickoff-Logo.svg";
 import { useNavigate } from "react-router-dom";
-import { useProduct } from "../../Context/ProductContext";
+import useProduct from "../../Context/useProduct";
 
 import { IoMdMenu } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";

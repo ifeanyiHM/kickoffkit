@@ -1,6 +1,7 @@
+import useProduct from "../../Context/useProduct";
+
 import mobImgHeader from "../../assets/Hero-Image.svg";
 import deskImgHeader from "../../assets/Hero-Image-dsk.svg";
-import { useProduct } from "../../Context/ProductContext";
 
 function HeaderBody() {
   const { desktopView, scrollToProductPage } = useProduct();

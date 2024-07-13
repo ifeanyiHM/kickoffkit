@@ -1,7 +1,6 @@
 import { LiaCheckCircle } from "react-icons/lia";
 import { GoBlocked } from "react-icons/go";
-
-import { useProduct } from "../Context/ProductContext";
+import useProduct from "../Context/useProduct";
 
 function SuccessModal() {
   const { isSelected, isInCart } = useProduct();

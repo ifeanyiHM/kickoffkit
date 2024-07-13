@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useProduct } from "../../Context/ProductContext";
+import useProduct from "../../Context/useProduct";
 
 import { IoFilter } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";

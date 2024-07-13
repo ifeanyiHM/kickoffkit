@@ -1,9 +1,9 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useProduct from "../Context/useProduct";
 
 import { FaAngleDown } from "react-icons/fa6";
 import mastercard from "../assets/Mastercard.svg";
-import { useProduct } from "../Context/ProductContext";
-import { useNavigate } from "react-router-dom";
 
 interface CheckOutFormProps {
   children: ReactNode;
