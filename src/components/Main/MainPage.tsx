@@ -128,13 +128,11 @@ const MainPage = () => {
 
             return (
               <div key={id} className="product-container">
-                <div
-                  className="img-container"
-                  onClick={() => handleClick(product)}
-                >
+                <div className="img-container">
                   <img
                     src={`https://api.timbu.cloud/images/${image}`}
                     alt="product"
+                    onClick={() => handleClick(product)}
                   />
                   <span className="icon" onClick={() => handleLikes(id)}>
                     {likedProducts.includes(id) ? (
