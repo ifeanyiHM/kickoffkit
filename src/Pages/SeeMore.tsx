@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useProduct from "../Context/useProduct";
+import { ProductDataProps } from "../data/ProductData";
 
 import { TfiArrowCircleLeft } from "react-icons/tfi";
 import { TfiArrowCircleRight } from "react-icons/tfi";
@@ -11,6 +13,8 @@ import { IoIosHeart } from "react-icons/io";
 function SeeMore() {
   const [curIndex, setCurIndex] = useState<number>(0);
 
+  const navigate = useNavigate();
+
   const {
     filteredProductData,
     productSelected,
@@ -18,7 +22,13 @@ function SeeMore() {
     addToCart,
     likedProducts,
     handleLikes,
+    setProductDetails,
   } = useProduct();
+
+  function handleClick(details: ProductDataProps) {
+    setProductDetails(details);
+    navigate("/product");
+  }
 
   const totalProducts = filteredProductData.length;
 
@@ -63,6 +73,7 @@ function SeeMore() {
                   <img
                     src={`https://api.timbu.cloud/images/${image}`}
                     alt="product"
+                    onClick={() => handleClick(product)}
                   />
                   <span className="icon" onClick={() => handleLikes(id)}>
                     {likedProducts.includes(id) ? (

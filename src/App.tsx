@@ -14,11 +14,6 @@ import SuccessModal from "./Utilities/SuccessModal";
 import PaymentSuccessful from "./Utilities/PaymentSuccessful";
 import LazyLoadingSpinner from "./Utilities/LazyLoadingSpinner";
 
-// import MainPage from "./components/Main/MainPage";
-// import CartPage from "./Pages/CartPage";
-// import CheckOutPage from "./Pages/CheckOutPage";
-// import ProductModal from "./Utilities/ProductModal";
-
 const MainPage = lazy(() => import("./components/Main/MainPage"));
 const CartPage = lazy(() => import("./Pages/CartPage"));
 const CheckOutPage = lazy(() => import("./Pages/CheckOutPage"));
