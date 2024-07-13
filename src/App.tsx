@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProductProvider } from "./Context/ProductContext";
+import { PrevTopPage } from "./Utilities/PrevToTop";
 
 import Header from "./components/Header/Header";
 import FooterPage from "./components/Footer/FooterPage";
@@ -28,6 +29,7 @@ function App() {
     <ProductProvider>
       <BrowserRouter>
         <Suspense fallback={<LazyLoadingSpinner />}>
+          <PrevTopPage />
           <Nav />
           <Routes>
             <Route
