@@ -19,15 +19,14 @@ function CartSummary() {
     handleLikes,
   } = useProduct();
   const [quantities, setQuantities] = useState(productCart.map(() => 1));
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [counterBtn, setCounterBtn] = useState<boolean>(false);
 
-  // const [summaryDetails, setSummaryDetails] =
-  //   useBrowserStorageState<propertySummaryProps | null>(null, "summaryDetails");
-
-  // const [propertyType, setPropertyType] = useBrowserStorageState<string>(
-  //   "buy",
-  //   "propertyType"
-  // );
+  // Toggle counter button for the clicked product
+  const toggleCounterBtn = (index: number) => {
+    setActiveIndex(index);
+    setCounterBtn((btn) => !btn);
+  };
 
   const handleIncrease = (index: number) => {
     setQuantities((prevQt) =>
@@ -123,10 +122,8 @@ function CartSummary() {
                     </button>
                     <button>
                       Quantity {quantity}{" "}
-                      <FaAngleDown
-                        onClick={() => setCounterBtn((btn) => !btn)}
-                      />
-                      {counterBtn && (
+                      <FaAngleDown onClick={() => toggleCounterBtn(index)} />
+                      {counterBtn && activeIndex === index && (
                         <span className="inc">
                           <span onClick={() => handleIncrease(index)}>+</span>
                           <span onClick={() => handleDecrease(index)}>-</span>
