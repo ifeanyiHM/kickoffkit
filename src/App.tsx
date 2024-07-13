@@ -13,6 +13,13 @@ import CheckOutPage from "./Pages/CheckOutPage";
 import CheckOutForm from "./Pages/CheckOutForm";
 import SuccessModal from "./Utilities/SuccessModal";
 import PaymentSuccessful from "./Utilities/PaymentSuccessful";
+import ProductModal from "./Utilities/ProductModal";
+
+// 69f5ec29c88d4f9f8e73cb33b62b279220240712125941210635
+
+//https://api.timbu.cloud/products?organization_id=ad5291da29e04fb48ad03cf4fbdb0533&reverse_sort=false&page=2&size=10&Appid=YER5YP0BRIJRI5U&Apikey=69f5ec29c88d4f9f8e73cb33b62b279220240712125941210635
+
+// YER5YP0BRIJRI5U
 
 function App() {
   return (
@@ -56,6 +63,7 @@ function App() {
               </>
             }
           ></Route>
+          <Route path="product" element={<ProductModal />}></Route>
         </Routes>
         <FooterPage />
         <SuccessModal />

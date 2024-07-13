@@ -47,36 +47,50 @@ function SeeMore() {
         {filteredProductData
           // .slice(0, desktopView ? 4 : 2)
           .slice(curIndex, desktopView ? curIndex + 4 : curIndex + 2)
-          .map((product, index) => (
-            <div key={index} className="product-container">
-              <div className="img-container">
-                <img src={product.image} alt="product" />
-                <span className="icon" onClick={() => handleLikes(product.id)}>
-                  {likedProducts.includes(product.id) ? (
-                    <IoIosHeart color=" #C61B1B" />
-                  ) : (
-                    <IoIosHeartEmpty />
-                  )}
-                </span>
-                <span
-                  className={`icon2 ${
-                    productSelected.includes(product.id) ? "add-to-cart" : ""
-                  }`}
-                  onClick={() => addToCart(product, product.id)}
-                >
-                  <IoCartOutline />
-                </span>
+          .map((product) => {
+            const {
+              unique_id: id,
+              name,
+              photos,
+              available_quantity: rating,
+              current_price: cost,
+            } = product;
+            const image = photos[0].url;
+            const price = cost[0].NGN[0];
+            return (
+              <div key={id} className="product-container">
+                <div className="img-container">
+                  <img
+                    src={`https://api.timbu.cloud/images/${image}`}
+                    alt="product"
+                  />
+                  <span className="icon" onClick={() => handleLikes(id)}>
+                    {likedProducts.includes(id) ? (
+                      <IoIosHeart color=" #C61B1B" />
+                    ) : (
+                      <IoIosHeartEmpty />
+                    )}
+                  </span>
+                  <span
+                    className={`icon2 ${
+                      productSelected.includes(id) ? "add-to-cart" : ""
+                    }`}
+                    onClick={() => addToCart(product, id)}
+                  >
+                    <IoCartOutline />
+                  </span>
+                </div>
+                <div className="price">
+                  <span>₦{price.toLocaleString()}</span>
+                  <span>
+                    {rating} <IoStar className="icon" />
+                  </span>
+                </div>
+                <p>{name.slice(0, 15)}...</p>
+                <span className="tag">Men's Jersey</span>
               </div>
-              <div className="price">
-                <span>₦{product.price.toLocaleString()}</span>
-                <span>
-                  {product.rating} <IoStar className="icon" />
-                </span>
-              </div>
-              <p>{product.title.slice(0, 15)}...</p>
-              <span className="tag">Men's Jersey</span>
-            </div>
-          ))}
+            );
+          })}
       </div>
     </div>
   );

@@ -6,8 +6,13 @@ import {
   useRef,
   useState,
 } from "react";
-import { ProductProps, defaultProductProps } from "../Utilities/ProductProps";
-import { ProductDataProps, productData } from "../data/ProductData";
+import {
+  ProductProps,
+  defaultProductDetails,
+  defaultProductProps,
+} from "../Utilities/ProductProps";
+import { ProductDataProps } from "../data/ProductData";
+import { API_KEY, APP_ID, ID, PAGE } from "./const Constant";
 
 const ProductContext = createContext<ProductProps>(defaultProductProps);
 
@@ -19,60 +24,51 @@ function ProductProvider({ children }: ProductProviderProps) {
   const [desktopView, setDesktopView] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const [productCart, setProductCart] = useState<ProductDataProps[]>([]);
-  const [productSelected, setProductSelected] = useState<number[]>([]);
+  const [productSelected, setProductSelected] = useState<string[]>([]);
   const [query, setQuery] = useState<string>("");
   const [isSelected, setIsSelected] = useState<boolean>(false);
-  const [likedProducts, setLikedProducts] = useState<number[]>([]);
+  const [likedProducts, setLikedProducts] = useState<string[]>([]);
   const [isInCart, setIsInCart] = useState<boolean>(false);
   const [isPaymentMade, setIsPaymentMade] = useState<boolean>(false);
+  const [productData, setProductData] = useState<ProductDataProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [pagination, setPagination] = useState<number>(PAGE);
+  const [productDetails, setProductDetails] = useState<ProductDataProps>(
+    defaultProductDetails
+  );
 
   const productPageRef = useRef<HTMLDivElement>(null);
 
-  //search product by title
-  const searchedProducts = productData.filter((item) =>
-    item.title.toLowerCase().includes(query.toLowerCase())
+  //fetch products from timbu api
+  useEffect(
+    function () {
+      async function fetchProducts() {
+        try {
+          setIsLoading(true);
+          setError("");
+
+          const url = `https://api.timbu.cloud/products?organization_id=${ID}&reverse_sort=false&page=${pagination}&size=10&Appid=${APP_ID}&Apikey=${API_KEY}`;
+
+          const res = await fetch(url);
+          if (!res.ok)
+            throw new Error("Something went wrong with fetching products");
+
+          const data = await res.json();
+          if (data.response === false) throw new Error("Product not found");
+
+          setProductData(data.items);
+          setError("");
+        } catch (err) {
+          setError((err as Error).message);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      fetchProducts();
+    },
+    [pagination]
   );
-
-  //display in the see more section products that is not in the cart
-  const filteredProductData = searchedProducts.filter(
-    (product) => !productCart.some((cart) => cart.id === product.id)
-  );
-
-  //add product to array of selected product
-  function handleCart(product: ProductDataProps) {
-    setProductCart((products) => [...products, product]);
-  }
-
-  //display selected product on the cart page when clicked
-  function addToCart(product: ProductDataProps) {
-    // If the product is already in the cart, do nothing
-    if (productCart.some((cartItem) => cartItem.id === product.id)) {
-      setIsInCart(true);
-      return;
-    }
-
-    handleCart(product);
-    setIsSelected(true);
-
-    setProductSelected((selected) =>
-      selected.includes(product.id)
-        ? selected.filter((id) => id !== product.id)
-        : [...selected, product.id]
-    );
-  }
-
-  //to like products
-  function handleLikes(id: number) {
-    setLikedProducts((likes) =>
-      likes.includes(id) ? likes.filter((id) => id !== id) : [...likes, id]
-    );
-  }
-
-  const scrollToProductPage = () => {
-    if (productPageRef.current) {
-      productPageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   //clear notification
   useEffect(
@@ -100,6 +96,56 @@ function ProductProvider({ children }: ProductProviderProps) {
     },
     [setDesktopView]
   );
+
+  //search product by title
+  const searchedProducts = productData.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  //display in the see more section products that is not in the cart
+  const filteredProductData = searchedProducts.filter(
+    (product) =>
+      !productCart.some((cart) => cart.unique_id === product.unique_id)
+  );
+
+  //add product to array of selected product
+  function handleCart(product: ProductDataProps) {
+    setProductCart((products) => [...products, product]);
+  }
+
+  //display selected product on the cart page when clicked
+  function addToCart(product: ProductDataProps) {
+    // If the product is already in the cart, do nothing
+    if (
+      productCart.some((cartItem) => cartItem.unique_id === product.unique_id)
+    ) {
+      setIsInCart(true);
+      return;
+    }
+
+    handleCart(product);
+    setIsSelected(true);
+
+    setProductSelected((selected) =>
+      selected.includes(product.unique_id)
+        ? selected.filter((id) => id !== product.unique_id)
+        : [...selected, product.unique_id]
+    );
+  }
+
+  //to like products
+  function handleLikes(id: string) {
+    setLikedProducts((likes) =>
+      likes.includes(id) ? likes.filter((id) => id !== id) : [...likes, id]
+    );
+  }
+
+  const scrollToProductPage = () => {
+    if (productPageRef.current) {
+      productPageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -118,6 +164,12 @@ function ProductProvider({ children }: ProductProviderProps) {
         isPaymentMade: isPaymentMade,
         setIsPaymentMade: setIsPaymentMade,
         productPageRef: productPageRef,
+        isLoading: isLoading,
+        error: error,
+        pagination,
+        setPagination,
+        productDetails,
+        setProductDetails,
 
         //functions
         scrollToProductPage: scrollToProductPage,
