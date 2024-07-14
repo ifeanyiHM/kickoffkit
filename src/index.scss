@@ -1844,9 +1844,7 @@ footer {
 
   .check-out-pages {
     @include bodystyles;
-    margin-top: 12.25rem;
 
-    //changes
     .cart-page-container {
       .cart {
         width: auto;
@@ -1896,7 +1894,6 @@ footer {
 
   .check-out-pages {
     @include bodystyles;
-    margin-top: 12.25rem;
 
     .see-more {
       @include selectMoreSyles;
