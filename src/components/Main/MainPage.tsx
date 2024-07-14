@@ -35,7 +35,7 @@ const MainPage = () => {
     setProductDetails,
   } = useProduct();
 
-  const [productList, setProductList] = useState<string>("arrival");
+  const [productList, setProductList] = useState<string>("all");
 
   const navigate = useNavigate();
 
@@ -79,16 +79,16 @@ const MainPage = () => {
       <main ref={productPageRef}>
         <div className="nav">
           <button
-            className={productList === "all" ? "active" : ""}
-            onClick={() => setProductList("all")}
-          >
-            All
-          </button>
-          <button
             className={productList === "arrival" ? "active" : ""}
             onClick={() => setProductList("arrival")}
           >
             New Arrival
+          </button>
+          <button
+            className={productList === "all" ? "active" : ""}
+            onClick={() => setProductList("all")}
+          >
+            All
           </button>
           <button
             className={productList === "top" ? "active" : ""}
@@ -115,61 +115,66 @@ const MainPage = () => {
           </button>
         </div>
         <div className="product">
-          {searchedProducts.map((product) => {
-            const {
-              unique_id: id,
-              name,
-              photos,
-              available_quantity: rating,
-              current_price: cost,
-            } = product;
-            const image = photos[0].url;
-            const price = cost[0].NGN[0];
+          {searchedProducts
+            .slice(
+              0,
+              productList === "arrival" ? 5 : productList === "top" ? 2 : 10
+            )
+            .map((product) => {
+              const {
+                unique_id: id,
+                name,
+                photos,
+                available_quantity: rating,
+                current_price: cost,
+              } = product;
+              const image = photos[0].url;
+              const price = cost[0].NGN[0];
 
-            return (
-              <div key={id} className="product-container">
-                <div className="img-container">
-                  <img
-                    src={`https://api.timbu.cloud/images/${image}`}
-                    alt="product"
-                    onClick={() => handleClick(product)}
-                  />
-                  <span className="icon" onClick={() => handleLikes(id)}>
-                    {likedProducts.includes(id) ? (
-                      <IoIosHeart color=" #C61B1B" />
-                    ) : (
-                      <IoIosHeartEmpty />
-                    )}
-                  </span>
-                  <span
-                    className={`icon2 ${
-                      productSelected.includes(id) ? "add-to-cart" : ""
-                    }`}
-                    onClick={() => addToCart(product, id)}
-                  >
-                    <IoCartOutline />
-                  </span>
-                </div>
-                <div className="price">
-                  <span>₦{price.toLocaleString()}</span>
-                  <span>
-                    {rating} <IoStar className="icon" />
-                  </span>
-                </div>
-                <p>
-                  {desktopView
-                    ? name.length > 30
-                      ? `${name.slice(0, 23)}...`
-                      : name
-                    : name.length > 15
-                    ? `${name.slice(0, 15)}...`
-                    : name}
-                </p>
+              return (
+                <div key={id} className="product-container">
+                  <div className="img-container">
+                    <img
+                      src={`https://api.timbu.cloud/images/${image}`}
+                      alt="product"
+                      onClick={() => handleClick(product)}
+                    />
+                    <span className="icon" onClick={() => handleLikes(id)}>
+                      {likedProducts.includes(id) ? (
+                        <IoIosHeart color=" #C61B1B" />
+                      ) : (
+                        <IoIosHeartEmpty />
+                      )}
+                    </span>
+                    <span
+                      className={`icon2 ${
+                        productSelected.includes(id) ? "add-to-cart" : ""
+                      }`}
+                      onClick={() => addToCart(product, id)}
+                    >
+                      <IoCartOutline />
+                    </span>
+                  </div>
+                  <div className="price">
+                    <span>₦{price.toLocaleString()}</span>
+                    <span>
+                      {rating} <IoStar className="icon" />
+                    </span>
+                  </div>
+                  <p>
+                    {desktopView
+                      ? name.length > 30
+                        ? `${name.slice(0, 23)}...`
+                        : name
+                      : name.length > 15
+                      ? `${name.slice(0, 15)}...`
+                      : name}
+                  </p>
 
-                <span className="tag">Men's Jersey</span>
-              </div>
-            );
-          })}
+                  <span className="tag">Men's Jersey</span>
+                </div>
+              );
+            })}
         </div>
         <div className="nav-item-btn">
           <FaAngleLeft
