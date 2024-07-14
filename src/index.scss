@@ -1027,7 +1027,7 @@ footer {
   height: 100vh;
 }
 
-.product-modal {
+.product-page {
   margin: 5.75rem 0;
   padding: 0 1rem;
 
@@ -1101,6 +1101,7 @@ footer {
       div {
         display: flex;
         flex-direction: row;
+        cursor: pointer;
 
         span {
           border: 1px solid rgb(177, 170, 170);
@@ -1114,6 +1115,7 @@ footer {
         color: $background-color;
         background: none;
         font-weight: 500;
+        cursor: pointer;
       }
     }
 
@@ -1154,7 +1156,7 @@ footer {
   .cart-page .cart-page-container .cart .container {
     grid-template-columns: repeat(2, 1fr);
   }
-  .product-modal {
+  .product-page {
     width: 50rem;
     margin-left: auto;
     margin-right: auto;
@@ -1544,7 +1546,7 @@ footer {
     }
   }
 
-  .product-modal {
+  .product-page {
     @include bodystyles;
     margin-top: 9.75rem;
     padding: 0;
@@ -1727,7 +1729,7 @@ footer {
     }
   }
 
-  .product-modal {
+  .product-page {
     @include bodystyles;
   }
 }

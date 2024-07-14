@@ -1,7 +1,7 @@
 import useProduct from "../Context/useProduct";
 import { FaCheckCircle } from "react-icons/fa";
 
-function ProductModal() {
+function ProductPage() {
   const { productDetails, addToCart } = useProduct();
 
   const {
@@ -15,7 +15,7 @@ function ProductModal() {
   const price = cost[0].NGN[0];
 
   return (
-    <div className="product-modal" key={id}>
+    <div className="product-page" key={id}>
       <div className="display-image">
         <div className="img-cont">
           <img src={`https://api.timbu.cloud/images/${image}`} alt={name} />
@@ -76,4 +76,4 @@ function ProductModal() {
   );
 }
 
-export default ProductModal;
+export default ProductPage;

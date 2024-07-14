@@ -17,7 +17,7 @@ import LazyLoadingSpinner from "./Utilities/LazyLoadingSpinner";
 const MainPage = lazy(() => import("./components/Main/MainPage"));
 const CartPage = lazy(() => import("./Pages/CartPage"));
 const CheckOutPage = lazy(() => import("./Pages/CheckOutPage"));
-const ProductModal = lazy(() => import("./Utilities/ProductModal"));
+const ProductPage = lazy(() => import("./Utilities/ProductPage"));
 
 function App() {
   return (
@@ -63,7 +63,7 @@ function App() {
                 </>
               }
             ></Route>
-            <Route path="product" element={<ProductModal />}></Route>
+            <Route path="product" element={<ProductPage />}></Route>
           </Routes>
           <FooterPage />
           <SuccessModal />

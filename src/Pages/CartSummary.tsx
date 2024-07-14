@@ -23,9 +23,13 @@ function CartSummary() {
   const [counterBtn, setCounterBtn] = useState<boolean>(false);
 
   // Toggle counter button for the clicked product
+  // const toggleCounterBtn = (index: number) => {
+  //   setActiveIndex(index);
+  //   setCounterBtn((btn) => !btn);
+  // };
   const toggleCounterBtn = (index: number) => {
-    setActiveIndex(index);
     setCounterBtn((btn) => !btn);
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleIncrease = (index: number) => {
@@ -116,7 +120,7 @@ function CartSummary() {
             const quantity = quantities[index];
             const price = basePrice * quantity;
             return (
-              <div className="item-container" key={index}>
+              <div className="item-container" key={id}>
                 <div className="product-img">
                   <img
                     src={`https://api.timbu.cloud/images/${image}`}

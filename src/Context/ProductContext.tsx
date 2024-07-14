@@ -6,6 +6,7 @@ import {
 } from "../Utilities/ProductProps";
 import { ProductDataProps } from "../data/ProductData";
 import { API_KEY, APP_ID, ID, PAGE } from "./const Constant";
+import { useBrowserStorageState } from "../Hooks/useBrowserStorageState";
 
 const ProductContext = createContext<ProductProps>(defaultProductProps);
 
@@ -27,9 +28,11 @@ function ProductProvider({ children }: ProductProviderProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [pagination, setPagination] = useState<number>(PAGE);
-  const [productDetails, setProductDetails] = useState<ProductDataProps>(
-    defaultProductDetails
-  );
+  const [productDetails, setProductDetails] =
+    useBrowserStorageState<ProductDataProps>(
+      defaultProductDetails,
+      "productDetails"
+    );
 
   const productPageRef = useRef<HTMLDivElement>(null);
 

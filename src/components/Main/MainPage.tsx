@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useProduct from "../../Context/useProduct";
+import { ProductDataProps } from "../../data/ProductData";
 
 import { IoFilter } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
@@ -16,8 +18,6 @@ import { TbError404Off } from "react-icons/tb";
 
 import ProductNotFound from "../../Utilities/ProductNotFound";
 import Spinner from "../../Utilities/Spinner";
-import { ProductDataProps } from "../../data/ProductData";
-import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const {
@@ -44,19 +44,18 @@ const MainPage = () => {
     pages.push(i);
   }
 
+  //display products details
   function handleClick(details: ProductDataProps) {
     setProductDetails(details);
     navigate("product");
   }
 
+  //display product by 'all products', 'new arrivals', and 'top produts'
   function shuffleArray(array: ProductDataProps[]) {
     return array.sort(() => Math.random() - 0.5);
   }
-
   const productCount =
     productList === "arrival" ? 5 : productList === "top" ? 2 : 10;
-
-  // Shuffle and slice the products
   const randomProducts = shuffleArray([...searchedProducts]).slice(
     0,
     productCount

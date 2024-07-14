@@ -1214,85 +1214,87 @@ footer .copyright span {
   height: 100vh;
 }
 
-.product-modal {
+.product-page {
   margin: 5.75rem 0;
   padding: 0 1rem;
 }
-.product-modal .display-image {
+.product-page .display-image {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(4rem, auto);
   gap: 0.5rem;
 }
-.product-modal .display-image .img-cont img {
+.product-page .display-image .img-cont img {
   width: 100%;
   height: 100%;
 }
-.product-modal .display-image .img-cont:nth-child(1) {
+.product-page .display-image .img-cont:nth-child(1) {
   grid-column: 1/2;
   grid-row: 1/2;
 }
-.product-modal .display-image .img-cont:nth-child(2) {
+.product-page .display-image .img-cont:nth-child(2) {
   grid-column: 2/5;
   grid-row: 1/4;
 }
-.product-modal .display-image .img-cont:nth-child(3) {
+.product-page .display-image .img-cont:nth-child(3) {
   grid-column: 1/2;
   grid-row: 2/3;
 }
-.product-modal .display-image .img-cont:nth-child(4) {
+.product-page .display-image .img-cont:nth-child(4) {
   grid-column: 1/2;
   grid-row: 3/4;
 }
-.product-modal .display-product p,
-.product-modal .display-product span,
-.product-modal .display-product h3,
-.product-modal .display-product strong {
+.product-page .display-product p,
+.product-page .display-product span,
+.product-page .display-product h3,
+.product-page .display-product strong {
   color: #242323;
 }
-.product-modal .display-product .sport {
+.product-page .display-product .sport {
   padding: 1.5rem 0;
 }
-.product-modal .display-product h1 {
+.product-page .display-product h1 {
   padding: 1.5rem 0;
   font-size: 1.5rem;
   font-family: Rockwell-condescend;
   color: #077929;
 }
-.product-modal .display-product .strong strong {
+.product-page .display-product .strong strong {
   font-size: 1.5rem;
 }
-.product-modal .display-product .description {
+.product-page .display-product .description {
   line-height: 1.5rem;
 }
-.product-modal .display-product .add {
+.product-page .display-product .add {
   display: flex;
   gap: 1rem;
   padding: 1.5rem 0;
 }
-.product-modal .display-product .add div {
+.product-page .display-product .add div {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
-.product-modal .display-product .add div span {
+.product-page .display-product .add div span {
   border: 1px solid rgb(177, 170, 170);
   padding: 0.5rem 1rem;
 }
-.product-modal .display-product .add button {
+.product-page .display-product .add button {
   padding: 0.625rem 1.25rem;
   border: 1px solid #077929;
   color: #077929;
   background: none;
   font-weight: 500;
+  cursor: pointer;
 }
-.product-modal .display-product ul {
+.product-page .display-product ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding-top: 1rem;
 }
-.product-modal .display-product ul li {
+.product-page .display-product ul li {
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -1311,7 +1313,7 @@ footer .copyright span {
   .cart-page .cart-page-container .cart .container {
     grid-template-columns: repeat(2, 1fr);
   }
-  .product-modal {
+  .product-page {
     width: 50rem;
     margin-left: auto;
     margin-right: auto;
@@ -1651,7 +1653,7 @@ footer .copyright span {
   .product-not-found .icon {
     font-size: 15rem;
   }
-  .product-modal {
+  .product-page {
     width: 64rem;
     margin: 0 auto;
     padding: 0 1rem;
@@ -1660,30 +1662,30 @@ footer .copyright span {
     display: flex;
     gap: 3rem;
   }
-  .product-modal .display-image {
+  .product-page .display-image {
     gap: 0.8rem;
     height: 100%;
   }
-  .product-modal .display-image .img-cont img {
+  .product-page .display-image .img-cont img {
     height: auto;
   }
-  .product-modal .display-image .img-cont:nth-child(2) {
+  .product-page .display-image .img-cont:nth-child(2) {
     grid-row: 1/6;
   }
-  .product-modal .display-product .sport {
+  .product-page .display-product .sport {
     padding-top: 0;
   }
-  .product-modal .display-product h1 {
+  .product-page .display-product h1 {
     font-size: 1.6rem;
   }
-  .product-modal .display-product .strong {
+  .product-page .display-product .strong {
     font-size: 1.1rem;
     padding-bottom: 1.5rem;
   }
-  .product-modal .display-product .strong strong {
+  .product-page .display-product .strong strong {
     font-size: 1.7rem;
   }
-  .product-modal .display-product .description {
+  .product-page .display-product .description {
     font-size: 1.1rem;
     line-height: 1.7rem;
   }
@@ -1841,7 +1843,7 @@ footer .copyright span {
   .check-out-pages .see-more {
     padding: 1.5rem 0;
   }
-  .product-modal {
+  .product-page {
     width: 65.5rem;
     padding: 0;
   }
