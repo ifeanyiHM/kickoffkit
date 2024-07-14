@@ -61,6 +61,13 @@ function CartSummary() {
       selected.filter((productId: string) => productId !== id)
     );
   }
+
+  //clear all items
+  function clearAllItems() {
+    setQuantities(productCart.map(() => 1));
+    setProductCart([]);
+    setProductSelected([]);
+  }
   //ensure product selected is updated whenever a product in the cart is removed
   useEffect(() => {
     setProductSelected((selected) =>
@@ -85,7 +92,14 @@ function CartSummary() {
   return (
     <div className="cart-page-container">
       <div className="cart">
-        {productCart.length >= 1 ? <h1>Your item</h1> : ""}
+        {productCart.length >= 1 ? (
+          <div className="item-header">
+            <h1>Your item</h1>
+            <span onClick={clearAllItems}>clear all</span>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="container">
           {productCart.map((product, index: number) => {
             const {

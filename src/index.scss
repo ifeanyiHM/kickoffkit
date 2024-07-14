@@ -148,9 +148,24 @@ $hover-color: #02611f;
 }
 
 @mixin cartSummaryStyles {
-  h1 {
-    font-size: 1.25rem;
-    font-weight: 700;
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    span {
+      color: $background-color;
+      cursor: pointer;
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
   }
 
   .container {
@@ -1124,12 +1139,21 @@ footer {
     margin: 0 auto;
   }
 
+  header {
+    .header-body img {
+      width: 100%;
+    }
+  }
+
   footer .container {
     @include bodystyles;
   }
 }
 
 @media screen and (min-width: 900px) {
+  .cart-page .cart-page-container .cart .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .product-modal {
     width: 50rem;
     margin-left: auto;
@@ -1480,6 +1504,10 @@ footer {
 
     .cart-page-container {
       @include cartSummaryStyles;
+
+      .cart .container {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
 
     .see-more {

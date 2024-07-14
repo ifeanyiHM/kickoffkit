@@ -4,11 +4,12 @@ import mobImgHeader from "../../assets/Hero-Image.svg";
 import deskImgHeader from "../../assets/Hero-Image-dsk.svg";
 
 function HeaderBody() {
-  const { desktopView, scrollToProductPage } = useProduct();
+  const { scrollToProductPage } = useProduct();
   return (
     <div className="header-body">
       <img
-        src={desktopView ? deskImgHeader : mobImgHeader}
+        // window.innerWidth < 992
+        src={window.innerWidth < 700 ? mobImgHeader : deskImgHeader}
         alt="header image"
       />
       <div className="text">
