@@ -117,8 +117,8 @@ const MainPage = () => {
         <div className="product">
           {searchedProducts
             .slice(
-              0,
-              productList === "arrival" ? 5 : productList === "top" ? 2 : 10
+              productList === "arrival" ? 4 : productList === "top" ? 3 : 0,
+              productList === "arrival" ? 9 : productList === "top" ? 5 : 10
             )
             .map((product) => {
               const {
