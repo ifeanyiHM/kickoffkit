@@ -1673,6 +1673,9 @@ footer .copyright span {
     align-self: flex-start;
     width: 20.938rem;
   }
+  .check-out-pages .cart-page-container .cart .container {
+    width: auto;
+  }
   .check-out-pages .cart-page-container .cart .container .item-container .product-img {
     width: 7.5rem;
   }

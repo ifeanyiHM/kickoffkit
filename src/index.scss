@@ -1529,19 +1529,22 @@ footer {
       align-self: flex-start;
       width: 20.938rem;
 
-      .cart .container .item-container {
-        .product-img {
-          // width: 11.65vw;
-          width: 7.5rem;
+      .cart .container {
+        width: auto;
+        .item-container {
+          .product-img {
+            // width: 11.65vw;
+            width: 7.5rem;
 
-          img {
-            width: 100%;
+            img {
+              width: 100%;
+            }
           }
-        }
 
-        .details {
-          flex-grow: 0;
-          width: auto;
+          .details {
+            flex-grow: 0;
+            width: auto;
+          }
         }
       }
     }
