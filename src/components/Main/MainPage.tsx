@@ -49,6 +49,19 @@ const MainPage = () => {
     navigate("product");
   }
 
+  function shuffleArray(array: ProductDataProps[]) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  const productCount =
+    productList === "arrival" ? 5 : productList === "top" ? 2 : 10;
+
+  // Shuffle and slice the products
+  const randomProducts = shuffleArray([...searchedProducts]).slice(
+    0,
+    productCount
+  );
+
   // return loading spinner when loading
   if (isLoading) return <Spinner />;
 
@@ -82,7 +95,7 @@ const MainPage = () => {
             className={productList === "arrival" ? "active" : ""}
             onClick={() => setProductList("arrival")}
           >
-            New Arrival
+            New Arrivals
           </button>
           <button
             className={productList === "all" ? "active" : ""}
@@ -115,66 +128,61 @@ const MainPage = () => {
           </button>
         </div>
         <div className="product">
-          {searchedProducts
-            .slice(
-              0,
-              productList === "arrival" ? 5 : productList === "top" ? 2 : 10
-            )
-            .map((product) => {
-              const {
-                unique_id: id,
-                name,
-                photos,
-                available_quantity: rating,
-                current_price: cost,
-              } = product;
-              const image = photos[0].url;
-              const price = cost[0].NGN[0];
+          {randomProducts.map((product) => {
+            const {
+              unique_id: id,
+              name,
+              photos,
+              available_quantity: rating,
+              current_price: cost,
+            } = product;
+            const image = photos[0].url;
+            const price = cost[0].NGN[0];
 
-              return (
-                <div key={id} className="product-container">
-                  <div className="img-container">
-                    <img
-                      src={`https://api.timbu.cloud/images/${image}`}
-                      alt="product"
-                      onClick={() => handleClick(product)}
-                    />
-                    <span className="icon" onClick={() => handleLikes(id)}>
-                      {likedProducts.includes(id) ? (
-                        <IoIosHeart color=" #C61B1B" />
-                      ) : (
-                        <IoIosHeartEmpty />
-                      )}
-                    </span>
-                    <span
-                      className={`icon2 ${
-                        productSelected.includes(id) ? "add-to-cart" : ""
-                      }`}
-                      onClick={() => addToCart(product, id)}
-                    >
-                      <IoCartOutline />
-                    </span>
-                  </div>
-                  <div className="price">
-                    <span>₦{price.toLocaleString()}</span>
-                    <span>
-                      {rating} <IoStar className="icon" />
-                    </span>
-                  </div>
-                  <p>
-                    {desktopView
-                      ? name.length > 30
-                        ? `${name.slice(0, 23)}...`
-                        : name
-                      : name.length > 15
-                      ? `${name.slice(0, 15)}...`
-                      : name}
-                  </p>
-
-                  <span className="tag">Men's Jersey</span>
+            return (
+              <div key={id} className="product-container">
+                <div className="img-container">
+                  <img
+                    src={`https://api.timbu.cloud/images/${image}`}
+                    alt="product"
+                    onClick={() => handleClick(product)}
+                  />
+                  <span className="icon" onClick={() => handleLikes(id)}>
+                    {likedProducts.includes(id) ? (
+                      <IoIosHeart color=" #C61B1B" />
+                    ) : (
+                      <IoIosHeartEmpty />
+                    )}
+                  </span>
+                  <span
+                    className={`icon2 ${
+                      productSelected.includes(id) ? "add-to-cart" : ""
+                    }`}
+                    onClick={() => addToCart(product, id)}
+                  >
+                    <IoCartOutline />
+                  </span>
                 </div>
-              );
-            })}
+                <div className="price">
+                  <span>₦{price.toLocaleString()}</span>
+                  <span>
+                    {rating} <IoStar className="icon" />
+                  </span>
+                </div>
+                <p>
+                  {desktopView
+                    ? name.length > 30
+                      ? `${name.slice(0, 23)}...`
+                      : name
+                    : name.length > 15
+                    ? `${name.slice(0, 15)}...`
+                    : name}
+                </p>
+
+                <span className="tag">Men's Jersey</span>
+              </div>
+            );
+          })}
         </div>
         <div className="nav-item-btn">
           <FaAngleLeft
