@@ -18,7 +18,7 @@ function SeeMore() {
   const {
     filteredProductData,
     productSelected,
-    desktopView,
+    // desktopView,
     addToCart,
     likedProducts,
     handleLikes,
@@ -56,7 +56,10 @@ function SeeMore() {
       <div className="product">
         {filteredProductData
           // .slice(0, desktopView ? 4 : 2)
-          .slice(curIndex, desktopView ? curIndex + 4 : curIndex + 2)
+          .slice(
+            curIndex,
+            window.innerWidth < 1024 ? curIndex + 2 : curIndex + 4
+          )
           .map((product) => {
             const {
               unique_id: id,

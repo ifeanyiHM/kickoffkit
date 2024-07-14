@@ -95,7 +95,10 @@ function CartSummary() {
         {productCart.length >= 1 ? (
           <div className="item-header">
             <h1>Your item</h1>
-            <span onClick={clearAllItems}>clear all</span>
+            <span className="cart-h" onClick={clearAllItems}>
+              Clear All
+            </span>
+            <span className="check-h">Edit</span>
           </div>
         ) : (
           ""
