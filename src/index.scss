@@ -171,7 +171,7 @@ $hover-color: #02611f;
       }
 
       .details {
-        flex-grow: 1;
+        // flex-grow: 1;
 
         .icon1,
         .icon2 {
@@ -872,6 +872,10 @@ footer {
     .container {
       .item-container {
         padding-bottom: 2.25rem;
+
+        .rate {
+          display: none;
+        }
       }
     }
   }
@@ -1531,6 +1535,7 @@ footer {
 
       .cart .container {
         width: auto;
+
         .item-container {
           .product-img {
             // width: 11.65vw;
@@ -1763,6 +1768,7 @@ footer {
 
         .container {
           width: auto;
+
           .item-container {
             .details {
               width: auto;
