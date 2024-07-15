@@ -18,7 +18,6 @@ function SeeMore() {
   const {
     filteredProductData,
     productSelected,
-    // desktopView,
     addToCart,
     likedProducts,
     handleLikes,
@@ -55,7 +54,6 @@ function SeeMore() {
       </div>
       <div className="product">
         {filteredProductData
-          // .slice(0, desktopView ? 4 : 2)
           .slice(
             curIndex,
             window.innerWidth < 1024 ? curIndex + 2 : curIndex + 4
