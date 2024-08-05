@@ -22,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 const MainPage = () => {
   const {
     desktopView,
-    productSelected,
     addToCart,
     searchedProducts,
     likedProducts,
@@ -33,6 +32,7 @@ const MainPage = () => {
     pagination,
     setPagination,
     setProductDetails,
+    newCartItems,
   } = useProduct();
 
   const [productList, setProductList] = useState<string>("all");
@@ -44,7 +44,7 @@ const MainPage = () => {
     pages.push(i);
   }
 
-  function handleClick(details: ProductDataProps) {
+  function expandProduct(details: ProductDataProps) {
     setProductDetails(details);
     navigate("product");
   }
@@ -120,7 +120,7 @@ const MainPage = () => {
               productList === "arrival" ? 4 : productList === "top" ? 3 : 0,
               productList === "arrival" ? 9 : productList === "top" ? 5 : 10
             )
-            .map((product) => {
+            .map((product, index) => {
               const {
                 unique_id: id,
                 name,
@@ -137,7 +137,7 @@ const MainPage = () => {
                     <img
                       src={`https://api.timbu.cloud/images/${image}`}
                       alt="product"
-                      onClick={() => handleClick(product)}
+                      onClick={() => expandProduct(product)}
                     />
                     <span className="icon" onClick={() => handleLikes(id)}>
                       {likedProducts.includes(id) ? (
@@ -148,9 +148,9 @@ const MainPage = () => {
                     </span>
                     <span
                       className={`icon2 ${
-                        productSelected.includes(id) ? "add-to-cart" : ""
+                        newCartItems.has(index) ? "add-to-cart" : ""
                       }`}
-                      onClick={() => addToCart(product, id)}
+                      onClick={() => addToCart(index)}
                     >
                       <IoCartOutline />
                     </span>
@@ -191,21 +191,7 @@ const MainPage = () => {
               {page}
             </span>
           ))}
-          {/* <span className="first">1</span>
-          <span>2</span>
-          {!desktopView ? (
-            <span>...</span>
-          ) : (
-            <>
-              <span>3</span>
-              <span>4</span>
-              <span>5</span>
-              <span>6</span>
-              <span>7</span>
-              <span>8</span>
-            </>
-          )}
-          <span>9</span> */}
+
           <FaAnglesRight
             className="icon"
             onClick={() => setPagination(Math.max(pagination + 1, 3))}

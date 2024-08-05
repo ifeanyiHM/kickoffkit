@@ -23,5 +23,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "../../../Downloads/Eflyer Free Website Template - Free-CSS.com/html/src/Another.tsx"
+  ]
 }

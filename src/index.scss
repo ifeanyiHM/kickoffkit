@@ -758,104 +758,122 @@ footer {
     gap: 1.5rem;
 
     .container {
-      .delivery,
-      .payment {
-        .header {
-          h1 {
-            font-size: 1rem;
-            font-weight: 700;
-            padding-top: 1.5rem;
-          }
-
-          .btn {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0 0 0;
-            padding: 2px;
-            border-radius: 4px;
-            background-color: rgba(0, 0, 0, 0.051);
-
-            button {
-              width: 50%;
-              height: 2.125rem;
-              color: #00000099;
-              border: 0;
-              border-radius: 4px;
+      form {
+        .delivery,
+        .payment {
+          .header {
+            h1 {
+              font-size: 1rem;
+              font-weight: 700;
+              padding-top: 1.5rem;
             }
 
-            .active {
-              background-color: #fff;
-              color: #000;
-            }
-          }
-        }
-        form {
-          label,
-          input {
-            display: block;
-          }
-
-          label {
-            margin: 1.5rem 0 0.675rem 0;
-            font-weight: 500;
-          }
-
-          input,
-          button {
-            height: 2.75rem;
-            width: 100%;
-            border: 1px solid #d0d5dd;
-            border-radius: 4px;
-            padding: 0 0.875rem;
-          }
-
-          button {
-            background-color: $background-color;
-            color: $primary-color;
-            border: none;
-            margin-top: 1.5rem;
-            transition: 0.3s;
-
-            &:hover {
-              background-color: $hover-color;
-            }
-          }
-
-          .det {
-            display: flex;
-            gap: 1.5rem;
-
-            div {
-              flex-grow: 1;
-            }
-          }
-
-          .inp {
-            position: relative;
-
-            div,
-            img {
-              position: absolute;
-              left: 1rem;
-              bottom: 1rem;
-            }
-
-            .icon {
-              position: absolute;
-              bottom: 1rem;
-              right: 1rem;
-            }
-
-            div {
+            .btn {
               display: flex;
               align-items: center;
-              gap: 0.5rem;
-              width: 5rem;
+              margin: 1.5rem 0 0 0;
+              padding: 2px;
+              border-radius: 4px;
+              background-color: rgba(0, 0, 0, 0.051);
+
+              button {
+                width: 50%;
+                height: 2.125rem;
+                color: #00000099;
+                border: 0;
+                border-radius: 4px;
+              }
+
+              .active {
+                background-color: #fff;
+                color: #000;
+              }
             }
           }
 
-          .inpp input {
-            padding-left: 3rem;
+          .form {
+            label,
+            input {
+              display: block;
+            }
+
+            label {
+              margin: 0.375rem 0 0.675rem 0;
+              font-weight: 500;
+            }
+
+            input,
+            button {
+              height: 2.75rem;
+              width: 100%;
+              border: 1px solid #d0d5dd;
+              border-radius: 4px;
+              padding: 0 0.875rem;
+            }
+
+            button {
+              background-color: $background-color;
+              color: $primary-color;
+              border: none;
+              margin-top: 1.5rem;
+              transition: 0.3s;
+
+              &:hover {
+                background-color: $hover-color;
+              }
+            }
+
+            .lab {
+              margin-top: 1.125rem;
+            }
+
+            .validation-msg {
+              font-size: 0.8rem;
+              padding-top: 3px;
+              color: rgb(211, 25, 25);
+              visibility: hidden;
+            }
+
+            .validation-input {
+              border: 1px solid rgb(211, 25, 25);
+            }
+
+            .det {
+              display: flex;
+              gap: 1.5rem;
+
+              div {
+                flex-grow: 1;
+              }
+            }
+
+            .inp {
+              position: relative;
+
+              div,
+              img {
+                position: absolute;
+                left: 1rem;
+                bottom: 2rem;
+              }
+
+              .icon {
+                position: absolute;
+                bottom: 2rem;
+                right: 1rem;
+              }
+
+              div {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                width: 5rem;
+              }
+            }
+
+            .inpp input {
+              padding-left: 3rem;
+            }
           }
         }
       }
@@ -1448,27 +1466,29 @@ footer {
       .container {
         width: 39.375rem;
 
-        .delivery,
-        .payment {
-          .header {
-            h1 {
-              padding-top: 0;
+        form {
+          .delivery,
+          .payment {
+            .header {
+              h1 {
+                padding-top: 0;
+              }
             }
-          }
-          form {
-            .details {
-              display: flex;
-              gap: 1.5rem;
+            .form {
+              .details {
+                display: flex;
+                gap: 1.5rem;
 
-              div {
-                flex-grow: 1;
+                div {
+                  flex-grow: 1;
+                }
               }
             }
           }
-        }
 
-        .payment {
-          padding-top: 2rem;
+          .payment {
+            padding-top: 2rem;
+          }
         }
       }
     }

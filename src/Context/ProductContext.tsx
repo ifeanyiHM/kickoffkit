@@ -8,16 +8,15 @@ import {
   defaultProductProps,
 } from "../Utilities/ProductProps";
 
-const ProductContext = createContext<ProductProps>(defaultProductProps);
-
 interface ProductProviderProps {
   children: ReactNode;
 }
 
+const ProductContext = createContext<ProductProps>(defaultProductProps);
+
 function ProductProvider({ children }: ProductProviderProps) {
   const [desktopView, setDesktopView] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const [productCart, setProductCart] = useState<ProductDataProps[]>([]);
   const [productSelected, setProductSelected] = useState<string[]>([]);
   const [query, setQuery] = useState<string>("");
   const [isSelected, setIsSelected] = useState<boolean>(false);
@@ -28,13 +27,27 @@ function ProductProvider({ children }: ProductProviderProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [pagination, setPagination] = useState<number>(PAGE);
+  const [cartItem, setCartItem] = useState<{ [key: number]: number }>({});
+  const [newCartItems, setNewCartItems] = useState<Set<number>>(new Set());
+
+  const productPageRef = useRef<HTMLDivElement>(null);
   const [productDetails, setProductDetails] =
     useBrowserStorageState<ProductDataProps>(
       defaultProductDetails,
       "productDetails"
     );
 
-  const productPageRef = useRef<HTMLDivElement>(null);
+  //change certain things when navigating desktop and mobile
+  useEffect(
+    function () {
+      const mq = window.matchMedia("(min-width: 1100px)");
+      if (mq.matches) {
+        setOpenMenu(true);
+        setDesktopView(true);
+      }
+    },
+    [setDesktopView]
+  );
 
   //fetch products from timbu api
   useEffect(
@@ -81,53 +94,94 @@ function ProductProvider({ children }: ProductProviderProps) {
     [isSelected, isInCart]
   );
 
-  //change certain things when navigating desktop and mobile
-  useEffect(
-    function () {
-      const mq = window.matchMedia("(min-width: 1100px)");
-      if (mq.matches) {
-        setOpenMenu(true);
-        setDesktopView(true);
+  useEffect(() => {
+    function getDefaultCart() {
+      const cart: { [key: number]: number } = {};
+      for (let index = 0; index < productData.length + 1; index++) {
+        cart[index] = 0;
       }
-    },
-    [setDesktopView]
+      return cart;
+    }
+
+    if (productData.length > 0) {
+      setCartItem(getDefaultCart());
+    }
+  }, [productData]);
+
+  const handleAddToCart = (itemId: number) => {
+    // Check if the item is already in the cart
+    if (cartItem[itemId] > 0) {
+      setIsInCart(true);
+      return;
+    }
+
+    // Add the item to the cart
+    setCartItem((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
+
+    // Check if the product exists in productData
+    if (productData.some((_, index) => index === itemId)) {
+      setIsSelected(true);
+      return;
+    }
+  };
+
+  const addToCart = (itemId: number) => {
+    handleAddToCart(itemId);
+    setNewCartItems((prevCartItems) => new Set(prevCartItems).add(itemId));
+  };
+
+  const increaseCartQuantity = (itemId: number) => {
+    setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+  };
+
+  const decreaseCartQuantity = (itemId: number) => {
+    setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+  };
+
+  function clearProductInCart(itemId: number) {
+    setCartItem((prev) => ({ ...prev, [itemId]: 0 }));
+
+    setNewCartItems((prevItems) => {
+      const updatedItems = new Set(prevItems);
+      updatedItems.delete(itemId);
+      return updatedItems;
+    });
+  }
+
+  function clearAllItems() {
+    setCartItem({});
+    setNewCartItems(new Set());
+  }
+
+  //get total number of items in cart
+  const totalItemsInCart = Object.values(cartItem).reduce(
+    (total, quantity) => total + quantity,
+    0
   );
+
+  //calculate the sum of all prouct in cart
+  function getTotalAmount() {
+    let totalAmount = 0;
+    for (const item in cartItem) {
+      if (cartItem[item] > 0) {
+        const itemInfo = productData.find((_, index) => index === Number(item));
+        if (itemInfo && typeof itemInfo.current_price[0].NGN[0] === "number") {
+          totalAmount += itemInfo.current_price[0].NGN[0] * cartItem[item];
+        }
+      }
+    }
+    return totalAmount;
+  }
 
   //search product by title
   const searchedProducts = productData.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  //display in the see more section products that is not in the cart
-  const filteredProductData = searchedProducts.filter(
-    (product) =>
-      !productCart.some((cart) => cart.unique_id === product.unique_id)
-  );
-
-  //add product to array of selected product
-  function handleCart(product: ProductDataProps) {
-    setProductCart((products) => [...products, product]);
-  }
-
-  //display selected product on the cart page when clicked
-  function addToCart(product: ProductDataProps) {
-    // If the product is already in the cart, do nothing
-    if (
-      productCart.some((cartItem) => cartItem.unique_id === product.unique_id)
-    ) {
-      setIsInCart(true);
-      return;
-    }
-
-    handleCart(product);
-    setIsSelected(true);
-
-    setProductSelected((selected) =>
-      selected.includes(product.unique_id)
-        ? selected.filter((id) => id !== product.unique_id)
-        : [...selected, product.unique_id]
-    );
-  }
+  // display in the see more section products that is not in the cart
+  // const filteredProductData = searchedProducts.filter(
+  //   (_, index) => !cartItem[index] || cartItem[index] === 0
+  // );
 
   //to like products
   function handleLikes(id: string) {
@@ -136,6 +190,7 @@ function ProductProvider({ children }: ProductProviderProps) {
     );
   }
 
+  //smooth scrolling
   const scrollToProductPage = () => {
     if (productPageRef.current) {
       productPageRef.current.scrollIntoView({ behavior: "smooth" });
@@ -145,51 +200,46 @@ function ProductProvider({ children }: ProductProviderProps) {
   return (
     <ProductContext.Provider
       value={{
-        //hooks
-        openMenu: openMenu,
-        setOpenMenu: setOpenMenu,
-        productCart: productCart,
-        setProductCart: setProductCart,
-        query: query,
-        setQuery: setQuery,
-        productSelected: productSelected,
-        setProductSelected: setProductSelected,
-        desktopView: desktopView,
-        isSelected: isSelected,
-        isInCart: isInCart,
-        isPaymentMade: isPaymentMade,
-        setIsPaymentMade: setIsPaymentMade,
-        productPageRef: productPageRef,
+        openMenu,
+        setOpenMenu,
+        query,
+        setQuery,
+        productSelected,
+        setProductSelected,
+        desktopView,
+        isSelected,
+        isInCart,
+        isPaymentMade,
+        setIsPaymentMade,
+        productPageRef,
         isLoading: isLoading,
         error: error,
         pagination,
         setPagination,
         productDetails,
         setProductDetails,
-
-        //functions
-        scrollToProductPage: scrollToProductPage,
+        increaseCartQuantity,
+        decreaseCartQuantity,
+        getTotalAmount,
+        cartItem,
+        clearProductInCart,
+        clearAllItems,
+        totalItemsInCart,
+        scrollToProductPage,
         title: 15,
         addToCart: addToCart,
-        searchedProducts: searchedProducts,
-        likedProducts: likedProducts,
-        handleLikes: handleLikes,
-        filteredProductData: filteredProductData,
+        handleAddToCart,
+        searchedProducts,
+        likedProducts,
+        handleLikes,
+        // filteredProductData,
+        productData,
+        newCartItems,
       }}
     >
       {children}
     </ProductContext.Provider>
   );
 }
-
-// function useProduct() {
-//   const context = useContext(ProductContext);
-//   if (context === undefined) {
-//     throw new Error("useProduct was used outside a ProductProvider");
-//   }
-//   return context;
-// }
-
-// export { ProductProvider, useProduct };
 
 export { ProductProvider, ProductContext };

@@ -10,7 +10,6 @@ export interface ProductProps {
   scrollToProductPage: () => void;
   productSelected: string[];
   searchedProducts: ProductDataProps[];
-  addToCart: (product: ProductDataProps, index: string) => void;
   likedProducts: string[];
   handleLikes: (id: string) => void;
   setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
@@ -28,6 +27,18 @@ export interface ProductProps {
   setPagination: (type: number) => void;
   productDetails: ProductDataProps;
   setProductDetails: React.Dispatch<React.SetStateAction<ProductDataProps>>;
+  productData: ProductDataProps[];
+  addToCart: (itemId: number) => void;
+  handleAddToCart: (itemId: number) => void;
+  increaseCartQuantity: (itemId: number) => void;
+  decreaseCartQuantity: (itemId: number) => void;
+  getTotalAmount: () => number;
+  cartItem: { [key: number]: number };
+  clearProductInCart: (itemId: number) => void;
+  clearAllItems: () => void;
+  totalItemsInCart: number;
+  newCartItems: Set<number>;
+  setNewCartItems: React.Dispatch<React.SetStateAction<Set<number>>>;
 }
 
 export const defaultProductDetails: ProductDataProps = {
@@ -48,7 +59,6 @@ export const defaultProductProps: ProductProps = {
   scrollToProductPage: () => {},
   productSelected: [],
   searchedProducts: [],
-  addToCart: () => {},
   likedProducts: [],
   handleLikes: () => {},
   setProductCart: () => {},
@@ -66,4 +76,16 @@ export const defaultProductProps: ProductProps = {
   setPagination: () => {},
   productDetails: defaultProductDetails,
   setProductDetails: () => {},
+  productData: [],
+  addToCart: () => {},
+  handleAddToCart: () => {},
+  increaseCartQuantity: () => {},
+  decreaseCartQuantity: () => {},
+  getTotalAmount: () => 0,
+  cartItem: {},
+  clearProductInCart: () => {},
+  clearAllItems: () => {},
+  totalItemsInCart: 0,
+  newCartItems: new Set(),
+  setNewCartItems: () => {},
 };

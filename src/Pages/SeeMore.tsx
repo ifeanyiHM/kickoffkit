@@ -16,12 +16,13 @@ function SeeMore() {
   const navigate = useNavigate();
 
   const {
-    filteredProductData,
-    productSelected,
     addToCart,
     likedProducts,
     handleLikes,
     setProductDetails,
+    searchedProducts,
+    // filteredProductData,
+    newCartItems,
   } = useProduct();
 
   function handleClick(details: ProductDataProps) {
@@ -29,7 +30,7 @@ function SeeMore() {
     navigate("/product");
   }
 
-  const totalProducts = filteredProductData.length;
+  const totalProducts = searchedProducts.length;
 
   function prevSlide() {
     setCurIndex((prevIndex) =>
@@ -53,12 +54,13 @@ function SeeMore() {
         </div>
       </div>
       <div className="product">
-        {filteredProductData
+        {searchedProducts
           .slice(
             curIndex,
             window.innerWidth < 1024 ? curIndex + 2 : curIndex + 4
           )
-          .map((product) => {
+          .map((product, index) => {
+            const originalIndex = curIndex + index;
             const {
               unique_id: id,
               name,
@@ -85,9 +87,9 @@ function SeeMore() {
                   </span>
                   <span
                     className={`icon2 ${
-                      productSelected.includes(id) ? "add-to-cart" : ""
+                      newCartItems.has(originalIndex) ? "add-to-cart" : ""
                     }`}
-                    onClick={() => addToCart(product, id)}
+                    onClick={() => addToCart(originalIndex)}
                   >
                     <IoCartOutline />
                   </span>

@@ -2,7 +2,7 @@ import useProduct from "../Context/useProduct";
 import { FaCheckCircle } from "react-icons/fa";
 
 function ProductPage() {
-  const { productDetails, addToCart } = useProduct();
+  const { productDetails, addToCart, productData } = useProduct();
 
   const {
     unique_id: id,
@@ -13,6 +13,9 @@ function ProductPage() {
   } = productDetails;
   const image = photos[0].url;
   const price = cost[0].NGN[0];
+
+  // Find the index of the current product in the product list
+  const index = productData.findIndex((product) => product.unique_id === id);
 
   return (
     <div className="product-page" key={id}>
@@ -52,9 +55,7 @@ function ProductPage() {
             <span>1</span>
             <span>+</span>
           </div> */}
-          <button onClick={() => addToCart(productDetails, id)}>
-            ADD TO CART
-          </button>
+          <button onClick={() => addToCart(index)}>ADD TO CART</button>
         </div>
         <p className="express">Categories: Men's Jersey</p>
         <ul>

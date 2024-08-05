@@ -729,14 +729,14 @@ footer .copyright span {
   flex-direction: column;
   gap: 1.5rem;
 }
-.check-out-pages .check-out-form .container .delivery .header h1,
-.check-out-pages .check-out-form .container .payment .header h1 {
+.check-out-pages .check-out-form .container form .delivery .header h1,
+.check-out-pages .check-out-form .container form .payment .header h1 {
   font-size: 1rem;
   font-weight: 700;
   padding-top: 1.5rem;
 }
-.check-out-pages .check-out-form .container .delivery .header .btn,
-.check-out-pages .check-out-form .container .payment .header .btn {
+.check-out-pages .check-out-form .container form .delivery .header .btn,
+.check-out-pages .check-out-form .container form .payment .header .btn {
   display: flex;
   align-items: center;
   margin: 1.5rem 0 0 0;
@@ -744,88 +744,103 @@ footer .copyright span {
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.051);
 }
-.check-out-pages .check-out-form .container .delivery .header .btn button,
-.check-out-pages .check-out-form .container .payment .header .btn button {
+.check-out-pages .check-out-form .container form .delivery .header .btn button,
+.check-out-pages .check-out-form .container form .payment .header .btn button {
   width: 50%;
   height: 2.125rem;
   color: rgba(0, 0, 0, 0.6);
   border: 0;
   border-radius: 4px;
 }
-.check-out-pages .check-out-form .container .delivery .header .btn .active,
-.check-out-pages .check-out-form .container .payment .header .btn .active {
+.check-out-pages .check-out-form .container form .delivery .header .btn .active,
+.check-out-pages .check-out-form .container form .payment .header .btn .active {
   background-color: #fff;
   color: #000;
 }
-.check-out-pages .check-out-form .container .delivery form label,
-.check-out-pages .check-out-form .container .delivery form input,
-.check-out-pages .check-out-form .container .payment form label,
-.check-out-pages .check-out-form .container .payment form input {
+.check-out-pages .check-out-form .container form .delivery .form label,
+.check-out-pages .check-out-form .container form .delivery .form input,
+.check-out-pages .check-out-form .container form .payment .form label,
+.check-out-pages .check-out-form .container form .payment .form input {
   display: block;
 }
-.check-out-pages .check-out-form .container .delivery form label,
-.check-out-pages .check-out-form .container .payment form label {
-  margin: 1.5rem 0 0.675rem 0;
+.check-out-pages .check-out-form .container form .delivery .form label,
+.check-out-pages .check-out-form .container form .payment .form label {
+  margin: 0.375rem 0 0.675rem 0;
   font-weight: 500;
 }
-.check-out-pages .check-out-form .container .delivery form input,
-.check-out-pages .check-out-form .container .delivery form button,
-.check-out-pages .check-out-form .container .payment form input,
-.check-out-pages .check-out-form .container .payment form button {
+.check-out-pages .check-out-form .container form .delivery .form input,
+.check-out-pages .check-out-form .container form .delivery .form button,
+.check-out-pages .check-out-form .container form .payment .form input,
+.check-out-pages .check-out-form .container form .payment .form button {
   height: 2.75rem;
   width: 100%;
   border: 1px solid #d0d5dd;
   border-radius: 4px;
   padding: 0 0.875rem;
 }
-.check-out-pages .check-out-form .container .delivery form button,
-.check-out-pages .check-out-form .container .payment form button {
+.check-out-pages .check-out-form .container form .delivery .form button,
+.check-out-pages .check-out-form .container form .payment .form button {
   background-color: #077929;
   color: #fff;
   border: none;
   margin-top: 1.5rem;
   transition: 0.3s;
 }
-.check-out-pages .check-out-form .container .delivery form button:hover,
-.check-out-pages .check-out-form .container .payment form button:hover {
+.check-out-pages .check-out-form .container form .delivery .form button:hover,
+.check-out-pages .check-out-form .container form .payment .form button:hover {
   background-color: #02611f;
 }
-.check-out-pages .check-out-form .container .delivery form .det,
-.check-out-pages .check-out-form .container .payment form .det {
+.check-out-pages .check-out-form .container form .delivery .form .lab,
+.check-out-pages .check-out-form .container form .payment .form .lab {
+  margin-top: 1.125rem;
+}
+.check-out-pages .check-out-form .container form .delivery .form .validation-msg,
+.check-out-pages .check-out-form .container form .payment .form .validation-msg {
+  font-size: 0.8rem;
+  padding-top: 3px;
+  color: rgb(211, 25, 25);
+  visibility: hidden;
+}
+.check-out-pages .check-out-form .container form .delivery .form .validation-input,
+.check-out-pages .check-out-form .container form .payment .form .validation-input {
+  border: 1px solid rgb(211, 25, 25);
+}
+.check-out-pages .check-out-form .container form .delivery .form .det,
+.check-out-pages .check-out-form .container form .payment .form .det {
   display: flex;
   gap: 1.5rem;
 }
-.check-out-pages .check-out-form .container .delivery form .det div,
-.check-out-pages .check-out-form .container .payment form .det div {
+.check-out-pages .check-out-form .container form .delivery .form .det div,
+.check-out-pages .check-out-form .container form .payment .form .det div {
   flex-grow: 1;
 }
-.check-out-pages .check-out-form .container .delivery form .inp,
-.check-out-pages .check-out-form .container .payment form .inp {
+.check-out-pages .check-out-form .container form .delivery .form .inp,
+.check-out-pages .check-out-form .container form .payment .form .inp {
   position: relative;
 }
-.check-out-pages .check-out-form .container .delivery form .inp div,
-.check-out-pages .check-out-form .container .delivery form .inp img,
-.check-out-pages .check-out-form .container .payment form .inp div,
-.check-out-pages .check-out-form .container .payment form .inp img {
+.check-out-pages .check-out-form .container form .delivery .form .inp div,
+.check-out-pages .check-out-form .container form .delivery .form .inp img,
+.check-out-pages .check-out-form .container form .payment .form .inp div,
+.check-out-pages .check-out-form .container form .payment .form .inp img {
   position: absolute;
   left: 1rem;
-  bottom: 1rem;
+  bottom: 2rem;
 }
-.check-out-pages .check-out-form .container .delivery form .inp .icon,
-.check-out-pages .check-out-form .container .payment form .inp .icon {
+.check-out-pages .check-out-form .container form .delivery .form .inp .icon,
+.check-out-pages .check-out-form .container form .payment .form .inp .icon {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   right: 1rem;
 }
-.check-out-pages .check-out-form .container .delivery form .inp div,
-.check-out-pages .check-out-form .container .payment form .inp div {
+.check-out-pages .check-out-form .container form .delivery .form .inp div,
+.check-out-pages .check-out-form .container form .payment .form .inp div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 5rem;
 }
-.check-out-pages .check-out-form .container .delivery form .inpp input,
-.check-out-pages .check-out-form .container .payment form .inpp input {
+.check-out-pages .check-out-form .container form .delivery .form .inpp input,
+.check-out-pages .check-out-form .container form .payment .form .inpp input {
   padding-left: 3rem;
 }
 .check-out-pages .cart-page-container {
@@ -1560,20 +1575,20 @@ footer .copyright span {
   .check-out-pages .check-out-form .container {
     width: 39.375rem;
   }
-  .check-out-pages .check-out-form .container .delivery .header h1,
-  .check-out-pages .check-out-form .container .payment .header h1 {
+  .check-out-pages .check-out-form .container form .delivery .header h1,
+  .check-out-pages .check-out-form .container form .payment .header h1 {
     padding-top: 0;
   }
-  .check-out-pages .check-out-form .container .delivery form .details,
-  .check-out-pages .check-out-form .container .payment form .details {
+  .check-out-pages .check-out-form .container form .delivery .form .details,
+  .check-out-pages .check-out-form .container form .payment .form .details {
     display: flex;
     gap: 1.5rem;
   }
-  .check-out-pages .check-out-form .container .delivery form .details div,
-  .check-out-pages .check-out-form .container .payment form .details div {
+  .check-out-pages .check-out-form .container form .delivery .form .details div,
+  .check-out-pages .check-out-form .container form .payment .form .details div {
     flex-grow: 1;
   }
-  .check-out-pages .check-out-form .container .payment {
+  .check-out-pages .check-out-form .container form .payment {
     padding-top: 2rem;
   }
   .check-out-pages .cart-page-container {

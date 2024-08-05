@@ -3,14 +3,14 @@ import paymentsuccess from "../assets/payment-succes.svg";
 import useProduct from "../Context/useProduct";
 
 function PaymentSuccessful() {
-  const { isPaymentMade, setIsPaymentMade, setProductCart } = useProduct();
+  const { isPaymentMade, setIsPaymentMade, clearAllItems } = useProduct();
   const navigate = useNavigate();
 
   function handleClick() {
     navigate("/");
 
     setIsPaymentMade(false);
-    setProductCart([]);
+    clearAllItems();
   }
   if (isPaymentMade)
     return (

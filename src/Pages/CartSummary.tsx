@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductNotFound from "../Utilities/ProductNotFound";
 import useProduct from "../Context/useProduct";
@@ -11,77 +11,37 @@ import { TiShoppingCart } from "react-icons/ti";
 
 function CartSummary() {
   const {
-    productCart,
-    setProductCart,
-    setProductSelected,
     title,
     likedProducts,
     handleLikes,
+    cartItem,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    getTotalAmount,
+    productData,
+    clearProductInCart,
+    clearAllItems,
+    totalItemsInCart,
   } = useProduct();
-  const [quantities, setQuantities] = useState(productCart.map(() => 1));
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [counterBtn, setCounterBtn] = useState<boolean>(false);
-
-  // Toggle counter button for the clicked product
-  // const toggleCounterBtn = (index: number) => {
-  //   setActiveIndex(index);
-  //   setCounterBtn((btn) => !btn);
-  // };
-  const toggleCounterBtn = (index: number) => {
-    setCounterBtn((btn) => !btn);
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
-
-  const handleIncrease = (index: number) => {
-    setQuantities((prevQt) =>
-      prevQt.map((qt, i) => (i === index ? qt + 1 : qt))
-    );
-  };
-
-  const handleDecrease = (index: number) => {
-    setQuantities((prevQt) =>
-      prevQt.map((qt, i) => (i === index && qt > 1 ? qt - 1 : qt))
-    );
-  };
-
-  const numOfProductCart = productCart.length;
 
   const navigate = useNavigate();
 
-  const totalPrice = productCart.reduce((sum, product, index) => {
-    const priceInNGN = product.current_price[0].NGN[0];
-    const quantity = quantities[index];
-    return sum + priceInNGN * quantity;
-  }, 0);
+  //Reveal the inc and dec button
+  const toggleCounterBtn = (index: number) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
 
-  const orderSummaryPrice = totalPrice + 5000 + 3500;
+  //Add shipping cost and tax to total amount
+  const totalAmount = getTotalAmount() + 5000 + 3500;
 
-  //delete product from the cart
-  function clearProduct(id: string) {
-    setProductCart((prod) => prod.filter((prod) => prod.unique_id !== id));
+  //check if cart is empty so as the send a different message to the ui
+  const isCartEmpty = () => {
+    return Object.values(cartItem).every((quantity) => quantity === 0);
+  };
 
-    //remove deleted product id from product selected array
-    setProductSelected((selected) =>
-      selected.filter((productId: string) => productId !== id)
-    );
-  }
-
-  //clear all items
-  function clearAllItems() {
-    setQuantities(productCart.map(() => 1));
-    setProductCart([]);
-    setProductSelected([]);
-  }
-  //ensure product selected is updated whenever a product in the cart is removed
-  useEffect(() => {
-    setProductSelected((selected) =>
-      selected.filter((id: string) =>
-        productCart.some((product) => product.unique_id === id)
-      )
-    );
-  }, [productCart, setProductSelected]);
-
-  if (productCart.length < 1)
+  //display this if cart is empty
+  if (isCartEmpty())
     return (
       <ProductNotFound>
         <div style={{ marginBottom: "13rem" }}>
@@ -96,7 +56,7 @@ function CartSummary() {
   return (
     <div className="cart-page-container">
       <div className="cart">
-        {productCart.length >= 1 ? (
+        {!isCartEmpty() ? (
           <div className="item-header">
             <h1>Your item</h1>
             <span className="cart-h" onClick={clearAllItems}>
@@ -108,7 +68,7 @@ function CartSummary() {
           ""
         )}
         <div className="container">
-          {productCart.map((product, index: number) => {
+          {productData.map((product, index: number) => {
             const {
               unique_id: id,
               name,
@@ -116,58 +76,67 @@ function CartSummary() {
               current_price: cost,
             } = product;
             const image = photos[0].url;
-            const basePrice = cost[0].NGN[0];
-            const quantity = quantities[index];
-            const price = basePrice * quantity;
-            return (
-              <div className="item-container" key={id}>
-                <div className="product-img">
-                  <img
-                    src={`https://api.timbu.cloud/images/${image}`}
-                    alt="product"
-                  />
-                </div>
-                <div className="details">
-                  <div className="dt">
-                    <div>
-                      <p>
-                        {name.length > 20 ? `${name.slice(0, title)}...` : name}
-                      </p>
-                      <span>Men's Jersey</span>
-                    </div>
-                    <p className="price">₦{price.toLocaleString()} </p>
-                  </div>
-                  <div className="button">
-                    <button>
-                      Size M <FaAngleDown />
-                    </button>
-                    <button>
-                      Quantity {quantity}{" "}
-                      <FaAngleDown onClick={() => toggleCounterBtn(index)} />
-                      {counterBtn && activeIndex === index && (
-                        <span className="inc">
-                          <span onClick={() => handleIncrease(index)}>+</span>
-                          <span onClick={() => handleDecrease(index)}>-</span>
-                        </span>
-                      )}
-                    </button>
-                  </div>
-                  <div className="rate">
-                    <RiDeleteBin6Line
-                      className="icon1"
-                      onClick={() => clearProduct(id)}
+            const price = cost[0].NGN[0];
+
+            if (cartItem[index] > 0) {
+              return (
+                <div className="item-container" key={id}>
+                  <div className="product-img">
+                    <img
+                      src={`https://api.timbu.cloud/images/${image}`}
+                      alt="product"
                     />
-                    <span className="icon" onClick={() => handleLikes(id)}>
-                      {likedProducts.includes(id) ? (
-                        <IoIosHeart className="icon2" color=" #C61B1B" />
-                      ) : (
-                        <IoIosHeartEmpty className="icon2" />
-                      )}
-                    </span>
+                  </div>
+                  <div className="details">
+                    <div className="dt">
+                      <div>
+                        <p>
+                          {name.length > 20
+                            ? `${name.slice(0, title)}...`
+                            : name}
+                        </p>
+                        <span>Men's Jersey</span>
+                      </div>
+                      <p className="price">
+                        ₦{(price * cartItem[index]).toLocaleString()}{" "}
+                      </p>
+                    </div>
+                    <div className="button">
+                      <button>
+                        Size M <FaAngleDown />
+                      </button>
+                      <button>
+                        Quantity {cartItem[index]}
+                        <FaAngleDown onClick={() => toggleCounterBtn(index)} />
+                        {activeIndex === index && (
+                          <span className="inc">
+                            <span onClick={() => increaseCartQuantity(index)}>
+                              +
+                            </span>
+                            <span onClick={() => decreaseCartQuantity(index)}>
+                              -
+                            </span>
+                          </span>
+                        )}
+                      </button>
+                    </div>
+                    <div className="rate">
+                      <RiDeleteBin6Line
+                        className="icon1"
+                        onClick={() => clearProductInCart(index)}
+                      />
+                      <span className="icon" onClick={() => handleLikes(id)}>
+                        {likedProducts.includes(id) ? (
+                          <IoIosHeart className="icon2" color=" #C61B1B" />
+                        ) : (
+                          <IoIosHeartEmpty className="icon2" />
+                        )}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
       </div>
@@ -176,7 +145,7 @@ function CartSummary() {
         <div className="order">
           <div>
             <span>items</span>
-            <span>{numOfProductCart}</span>
+            <span>{totalItemsInCart}</span>
           </div>
           <div>
             <span>delivery</span>
@@ -188,7 +157,7 @@ function CartSummary() {
           </div>
           <div>
             <span>Total</span>
-            <span>{orderSummaryPrice.toLocaleString()}</span>
+            <span>{totalAmount.toLocaleString()}</span>
           </div>
         </div>
         <div className="coupon">
