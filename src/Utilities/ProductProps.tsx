@@ -14,7 +14,7 @@ export interface ProductProps {
   handleLikes: (id: string) => void;
   setProductSelected: React.Dispatch<React.SetStateAction<string[]>>;
   title: number;
-  filteredProductData: ProductDataProps[];
+  // filteredProductData: ProductDataProps[];
   isSelected: boolean;
   isInCart: boolean;
   isPaymentMade: boolean;
@@ -37,7 +37,7 @@ export interface ProductProps {
   clearAllItems: () => void;
   totalItemsInCart: number;
   newCartItems: Set<number>;
-  setNewCartItems: React.Dispatch<React.SetStateAction<Set<number>>>;
+  // setNewCartItems: React.Dispatch<React.SetStateAction<Set<number>>>;
 }
 
 export const defaultProductDetails: ProductDataProps = {
@@ -61,7 +61,7 @@ export const defaultProductProps: ProductProps = {
   handleLikes: () => {},
   setProductSelected: () => {},
   title: 0,
-  filteredProductData: [],
+  // filteredProductData: [],
   isSelected: false,
   isInCart: false,
   isPaymentMade: false,
@@ -84,5 +84,5 @@ export const defaultProductProps: ProductProps = {
   clearAllItems: () => {},
   totalItemsInCart: 0,
   newCartItems: new Set(),
-  setNewCartItems: () => {},
+  // setNewCartItems: () => {},
 };
