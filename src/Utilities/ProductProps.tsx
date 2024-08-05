@@ -1,12 +1,13 @@
+import { Dispatch, SetStateAction } from "react";
 import { ProductDataProps } from "../data/ProductData";
 
 export interface ProductProps {
   openMenu: boolean;
-  setOpenMenu: (type: boolean) => void;
+  setOpenMenu: Dispatch<SetStateAction<boolean>>;
   productCart: ProductDataProps[];
   desktopView: boolean;
   query: string;
-  setQuery: (type: string) => void;
+  setQuery: Dispatch<SetStateAction<string>>;
   scrollToProductPage: () => void;
   productSelected: string[];
   searchedProducts: ProductDataProps[];
