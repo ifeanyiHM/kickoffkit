@@ -4,7 +4,6 @@ import { ProductDataProps } from "../data/ProductData";
 export interface ProductProps {
   openMenu: boolean;
   setOpenMenu: Dispatch<SetStateAction<boolean>>;
-  // productCart: ProductDataProps[];
   desktopView: boolean;
   query: string;
   setQuery: Dispatch<SetStateAction<string>>;
@@ -52,7 +51,6 @@ export const defaultProductDetails: ProductDataProps = {
 export const defaultProductProps: ProductProps = {
   openMenu: false,
   setOpenMenu: () => {},
-  productCart: [],
   desktopView: false,
   query: "",
   setQuery: () => {},
@@ -61,7 +59,6 @@ export const defaultProductProps: ProductProps = {
   searchedProducts: [],
   likedProducts: [],
   handleLikes: () => {},
-  setProductCart: () => {},
   setProductSelected: () => {},
   title: 0,
   filteredProductData: [],
