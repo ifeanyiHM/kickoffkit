@@ -4,7 +4,7 @@ import { ProductDataProps } from "../data/ProductData";
 export interface ProductProps {
   openMenu: boolean;
   setOpenMenu: Dispatch<SetStateAction<boolean>>;
-  productCart: ProductDataProps[];
+  // productCart: ProductDataProps[];
   desktopView: boolean;
   query: string;
   setQuery: Dispatch<SetStateAction<string>>;
@@ -13,7 +13,6 @@ export interface ProductProps {
   searchedProducts: ProductDataProps[];
   likedProducts: string[];
   handleLikes: (id: string) => void;
-  setProductCart: React.Dispatch<React.SetStateAction<ProductDataProps[]>>;
   setProductSelected: React.Dispatch<React.SetStateAction<string[]>>;
   title: number;
   filteredProductData: ProductDataProps[];
