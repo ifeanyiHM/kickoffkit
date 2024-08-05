@@ -135,7 +135,20 @@ function ProductProvider({ children }: ProductProviderProps) {
   };
 
   const decreaseCartQuantity = (itemId: number) => {
-    setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItem((prev) => {
+      const updatedCart = { ...prev, [itemId]: prev[itemId] - 1 };
+
+      // If the item's quantity reaches 0, remove it from newCartItems
+      if (updatedCart[itemId] === 0) {
+        setNewCartItems((prevItems) => {
+          const updatedItems = new Set(prevItems);
+          updatedItems.delete(itemId);
+          return updatedItems;
+        });
+      }
+
+      return updatedCart;
+    });
   };
 
   function clearProductInCart(itemId: number) {
